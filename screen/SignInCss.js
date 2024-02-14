@@ -40,6 +40,7 @@ import { StyleSheet } from "react-native";
         flexDirection: 'row',
         alignItems: 'center',
         gap: 10,
+        borderRadius: 20,
     },
     iconTouch: {
         backgroundColor: '#F8D3FE',
@@ -58,9 +59,9 @@ import { StyleSheet } from "react-native";
         color: '#EB86FD',
     },
     input: {
-        borderWidth: 1,
+        borderWidth: 0,
         borderColor: 'black',
-        borderRadius: 15,
+        borderRadius: 20,
         height: '100%',
         width: '100%',
         paddingLeft: 53,
@@ -74,6 +75,7 @@ import { StyleSheet } from "react-native";
         flexDirection: 'row',
         alignItems: 'center',
         gap: 10,
+        borderRadius: 20,
     },
     lockTouch: {
         backgroundColor: '#E1EAFF',
@@ -138,7 +140,7 @@ import { StyleSheet } from "react-native";
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 50,
+        height: 60,
         borderRadius: 30,
     },
     signinWord: {

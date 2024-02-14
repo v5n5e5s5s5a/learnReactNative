@@ -8,8 +8,8 @@ export default function App () {
   return (
     <View>
       {/* <Text>food</Text> */}
-      <ShippingBilling/>
-      {/* <SignIn/> */}
+      {/* <ShippingBilling/> */}
+      <SignIn/>
       {/* <Todo /> */}
     </View>
   );
