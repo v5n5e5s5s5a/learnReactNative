@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { View,Text  } from 'react-native';
 import { SignIn } from './screen/SignIn';
 import { ShippingBilling } from './screen/ShippingBilling';
+import { FourImages } from './images/FourImages';
 // import Sign from './Signin';
 
 export default function App () {
@@ -9,7 +10,8 @@ export default function App () {
     <View>
       {/* <Text>food</Text> */}
       {/* <ShippingBilling/> */}
-      <SignIn/>
+      {/* <SignIn/> */}
+      <FourImages/>
       {/* <Todo /> */}
     </View>
   );
