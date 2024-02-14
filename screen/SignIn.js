@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { TextInput, Checkbox, Icon } from "react-native-paper";
 import { design } from "./SignInCss";
-import { CheckBox } from "react-native-elements";
+//import { CheckBox } from "react-native-elements";
 import Feather from "react-native-vector-icons/Feather"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
 import AntDesign from "react-native-vector-icons/AntDesign"
@@ -21,22 +22,33 @@ export const SignIn = () => {
             </View>
 
             <View style={design.form}>
-                <View style={design.divEnvelope}>
-                    <TouchableOpacity style={design.iconTouch}>
-                        <FontAwesome name="envelope-o" style={design.envelopeIcon} />
-                    </TouchableOpacity>
-                    <TextInput style={design.input} placeholder="quickrakibull@gmail.com" placeholderTextColor={'gray'}></TextInput>
-                </View>
-                <View style={design.div2Envelope}>
-                    <TouchableOpacity style={design.lockTouch}>
-                        <AntDesign name="lock" style={design.lockIcon} />
-                    </TouchableOpacity>
-                    <TextInput style={design.input} placeholder="Password" placeholderTextColor={'gray'}></TextInput>
-                </View>
+
+                <TextInput
+                    style={design.inputEmail}
+                    
+                    mode='flat(disabled)'
+                    label="Email"
+                    left={<TextInput.Icon size={15} icon={"email-outline"} style={design.envelopeIcon} />}
+                />
+
+                <TextInput
+                    style={design.inputPassword}
+                    UnderlineColor= '#f7f7f7'
+                    mode='flat'
+                    label="Password"
+                    secureTextEntry
+                    left={<TextInput.Icon size={15} icon={"lock-outline"} style={design.passwordIcon} />}
+                />
+
                 <View style={design.checkboxDiv}>
+                    <Checkbox/>
+                    <Text style={{ fontSize: 12, }}>Remember Me</Text>
+                </View>
+
+                {/* <View style={design.checkboxDiv}>
                     <CheckBox containerStyle={design.checkContainer}></CheckBox>
                     <Text>Remember Me</Text>
-                </View>
+                </View> */}
             </View>
 
             <View style={design.blue}>
