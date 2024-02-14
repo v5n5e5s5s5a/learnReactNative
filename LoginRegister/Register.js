@@ -29,6 +29,7 @@ export const Register = () => {
                     style={registerStyles.email}
                     mode="flat"
                     underlineColor="white"
+                    secureTextEntry
                     // label={'Email'}
                     placeholder="Email" placeholderTextColor={'#B8B7C0'}
                     left={<TextInput.Icon icon={'email-outline'} color='#76C88B' style={registerStyles.eamilIcon} />}

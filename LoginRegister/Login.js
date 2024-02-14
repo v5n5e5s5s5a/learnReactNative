@@ -27,6 +27,7 @@ export const Login = () => {
                     style={LoginStyles.password}
                     mode="flat"
                     underlineColor="white"
+                    secureTextEntry
                     // label={'Password'}
                     placeholder="Password" placeholderTextColor={'#B8B7C0'}
                     left={<TextInput.Icon icon={'lock-outline'} color='#A09EF3' style={LoginStyles.passwordIcon} />}
