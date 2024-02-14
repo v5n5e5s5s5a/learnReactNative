@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import { TextInput, Icon } from "react-native-paper";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { LoginStyles } from "./loginStyles";
-import FontAwesome from "react-native-vector-icons/FontAwesome"
 import AntDesign from "react-native-vector-icons/AntDesign"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import React from "react";
@@ -10,7 +9,7 @@ import React from "react";
 export const Login = () => {
     return (
         <View style={LoginStyles.body}>
-            <StatusBar style="auto"/>
+            <StatusBar style="auto" />
             <Image source={require('../assets/LoginLogo.jpeg')} style={LoginStyles.loginLogo} />
 
             <View style={LoginStyles.loginDiv}>
@@ -20,14 +19,16 @@ export const Login = () => {
                     style={LoginStyles.username}
                     mode="flat"
                     underlineColor="white"
-                    label={'Username'}
+                    // label={'Username'}
+                    placeholder="Username" placeholderTextColor={'#B8B7C0'}
                     left={<TextInput.Icon icon={'account-outline'} color='#F6A035' style={LoginStyles.userIcon} />}
                 />
                 <TextInput
                     style={LoginStyles.password}
                     mode="flat"
                     underlineColor="white"
-                    label={'Password'}
+                    // label={'Password'}
+                    placeholder="Password" placeholderTextColor={'#B8B7C0'}
                     left={<TextInput.Icon icon={'lock-outline'} color='#A09EF3' style={LoginStyles.passwordIcon} />}
                 />
 
@@ -41,16 +42,17 @@ export const Login = () => {
                 </View>
 
                 <View style={LoginStyles.bottomIcons}>
-                <TouchableOpacity style={LoginStyles.fbTouch}>
-                    <Ionicons name="logo-facebook" style={LoginStyles.fb} />
-                </TouchableOpacity>
-                <TouchableOpacity style={LoginStyles.fbTouch}>
-                    <FontAwesome name="google-plus-circle" style={LoginStyles.google} />
-                </TouchableOpacity>
-                <TouchableOpacity style={LoginStyles.fbTouch}>
-                    <AntDesign name="apple1" style={LoginStyles.apple} />
-                </TouchableOpacity>
-            </View>
+                    <TouchableOpacity style={LoginStyles.fbTouch}>
+                        <Ionicons name="logo-facebook" style={LoginStyles.fb} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={LoginStyles.fbTouch}>
+                        <Image source={require('../assets/googleIcon.png')} style={LoginStyles.google} />
+                        {/* <FontAwesome name="google-plus-circle"  /> */}
+                    </TouchableOpacity>
+                    <TouchableOpacity style={LoginStyles.fbTouch}>
+                        <AntDesign name="apple1" style={LoginStyles.apple} />
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )

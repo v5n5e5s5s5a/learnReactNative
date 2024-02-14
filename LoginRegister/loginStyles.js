@@ -75,9 +75,9 @@ export const LoginStyles = StyleSheet.create({
         fontSize: 15,
     },
     submitTouch:{
-        backgroundColor: '#191B32',
+        backgroundColor: '#1A1C33',
         width: '40%',
-        height: 55,
+        height: 50,
         borderRadius: 30,
         display: 'flex',
         flexDirection: 'row',
@@ -113,8 +113,8 @@ export const LoginStyles = StyleSheet.create({
         fontSize: 30,
     },
     google: {
-        color: '#EA523D',
-        fontSize: 30,
+        width: '80%',
+        height: '80%',
     },
     apple: {
         color: '#15131E',

@@ -4,6 +4,7 @@ import { SignIn } from './screen/SignIn';
 import { ShippingBilling } from './screen/ShippingBilling';
 import { FourImages } from './images/FourImages';
 import { Login } from './LoginRegister/Login';
+import { Register } from './LoginRegister/Register';
 // import Sign from './Signin';
 
 export default function App () {
@@ -14,7 +15,8 @@ export default function App () {
       {/* <SignIn/> */}
       {/* <FourImages/> */}
       {/* <Todo /> */}
-      <Login/>
+      {/* <Login/> */}
+      <Register/>
     </View>
   );
 }
