@@ -89,9 +89,24 @@ export const LoginStyles = StyleSheet.create({
         fontSize: 16,
     },
 
+    newRegisterTouch: {
+        marginTop: 30,
+        // backgroundColor: 'yellow',
+        alignItems: 'center',
+        marginLeft: '-15%',
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 5,
+    },
+    newRegisterWord1: {
+        color: '#818FFC',
+        fontSize: 15,
+        fontWeight: 'bold',
+    },
+
     bottomIcons: {
         // backgroundColor: 'white',
-        marginTop: 100,
+        marginTop: 60,
         width: '100%',
         height: 'auto',
         display: 'flex',
@@ -113,8 +128,8 @@ export const LoginStyles = StyleSheet.create({
         fontSize: 30,
     },
     google: {
-        width: '80%',
-        height: '80%',
+        width: '70%',
+        height: '70%',
     },
     apple: {
         color: '#15131E',

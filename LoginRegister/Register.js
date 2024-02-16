@@ -1,16 +1,16 @@
 import { StatusBar } from "expo-status-bar";
-import { TextInput, Icon } from "react-native-paper";
+import { TextInput, Icon, IconButton } from "react-native-paper";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { registerStyles } from "./registerStyles";
 import AntDesign from "react-native-vector-icons/AntDesign"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import React from "react";
 
-export const Register = () => {
+export const Register = ({ navigation }) => {
     return (
         <View style={registerStyles.parent}>
             <StatusBar style="auto" />
-
+            <IconButton icon={'arrow-left'} style={{marginTop: 30,}} onPress={() => navigation.navigate('Login')}/>
             <Image source={require('../assets/RegisterLogo.jpeg')} style={registerStyles.registerLogo} />
 
 
@@ -44,7 +44,7 @@ export const Register = () => {
                     left={<TextInput.Icon icon={'lock-outline'} color='#A09EF3' style={registerStyles.passwordIcon} />}
                 />
 
-                <TouchableOpacity style={registerStyles.submitTouch}>
+                <TouchableOpacity style={registerStyles.submitTouch} onPress={() => navigation.navigate('Login')}>
                     <Text style={registerStyles.submitLogin}>Register</Text>
                 </TouchableOpacity>
             </View>

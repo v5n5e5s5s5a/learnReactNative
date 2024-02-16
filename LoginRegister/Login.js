@@ -6,7 +6,7 @@ import AntDesign from "react-native-vector-icons/AntDesign"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import React from "react";
 
-export const Login = () => {
+export const Login = ({ navigation }) => {
     return (
         <View style={LoginStyles.body}>
             <StatusBar style="auto" />
@@ -27,7 +27,9 @@ export const Login = () => {
                     style={LoginStyles.password}
                     mode="flat"
                     underlineColor="white"
+                    underlineColorAndroid={'transparent'}
                     secureTextEntry
+                    activeOutlineColor="none"
                     // label={'Password'}
                     placeholder="Password" placeholderTextColor={'#B8B7C0'}
                     left={<TextInput.Icon icon={'lock-outline'} color='#A09EF3' style={LoginStyles.passwordIcon} />}
@@ -37,10 +39,15 @@ export const Login = () => {
                     <TouchableOpacity style={LoginStyles.forgotpassTouch}>
                         <Text style={LoginStyles.forgotpass}>Forgot Password?</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={LoginStyles.submitTouch}>
+                    <TouchableOpacity style={LoginStyles.submitTouch} onPress={() => navigation.navigate('Home')}>
                         <Text style={LoginStyles.submitLogin}>Login</Text>
                     </TouchableOpacity>
                 </View>
+                
+                <TouchableOpacity style={LoginStyles.newRegisterTouch} >
+                    <Text style={LoginStyles.newRegisterWord} >Don't Have an Account?</Text>
+                    <Text style={LoginStyles.newRegisterWord1} onPress={() => navigation.navigate('Register')}>Register</Text>
+                </TouchableOpacity>
 
                 <View style={LoginStyles.bottomIcons}>
                     <TouchableOpacity style={LoginStyles.fbTouch}>

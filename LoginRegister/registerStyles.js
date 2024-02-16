@@ -7,12 +7,12 @@ export const registerStyles = StyleSheet.create({
         width: '100%',
         height: '100%',
         paddingHorizontal: '6%',
-        paddingTop: '10%',
+        paddingTop: '1%',
         paddingBottom: '6%',
     },
     registerLogo: {
         width: '100%',
-        height: 315,
+        height: 290,
     },
 
 
