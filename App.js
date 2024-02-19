@@ -8,25 +8,36 @@ import { Register } from './LoginRegister/Register';
 import { Home } from './LoginRegister/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { SearchClothes } from './Shopping/SearchClothes';
 import 'react-native-gesture-handler'
 
-const Stack = createStackNavigator();
-export default function App () {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
-        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-      // {/* <Text>food</Text> */}
-      // {/* <ShippingBilling/> */}
-      // {/* <SignIn/> */}
-      // {/* <FourImages/> */}
-      // {/* <Todo /> */}
-      // {/* <Login/> */}
-      // {/* <Home/> */}
-      // {/* <Register/> */}
-  );
+
+export default function App (){
+  return(
+    <View>
+    {/* <Text>Hello</Text> */}
+    < SearchClothes/>
+    
+    </View>
+  )
 }
+
+// const Stack = createStackNavigator();
+// export default function App () {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName="Login">
+//         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+//         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>
+//         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//       // {/* <Text>food</Text> */}
+//       // {/* <ShippingBilling/> */}
+//       // {/* <SignIn/> */}
+//       // {/* <FourImages/> */}
+//       // {/* <Todo /> */}
+//   );
+// }
+
+
