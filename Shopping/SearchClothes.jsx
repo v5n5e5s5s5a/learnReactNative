@@ -76,93 +76,93 @@ export const SearchClothes = () => {
     function Men({ imageSource1, icon, shirtName, shirtPrice }) {
         return (
             <View style={SearchClothesStyles.menView}>
-                <Image source={imageSource1} style={SearchClothesStyles.imageSource1}/>
-                <IconButton icon={icon} color= '#AEAEAE' size={16} style={SearchClothesStyles.menIcon}/>
-                <Text style={{color: '#767676', marginTop: 15, fontSize: 15}}>{shirtName}</Text>
-                <Text style={{fontSize: 15, fontWeight: 'bold', marginTop: 5}}>{shirtPrice}</Text>
+                <Image source={imageSource1} style={SearchClothesStyles.imageSource1} />
+                <IconButton icon={icon} color='#AEAEAE' size={16} style={SearchClothesStyles.menIcon} />
+                <Text style={{ color: '#767676', marginTop: 15, fontSize: 15 }}>{shirtName}</Text>
+                <Text style={{ fontSize: 15, fontWeight: 'bold', marginTop: 5 }}>{shirtPrice}</Text>
             </View>
         )
     }
 
     return (
-        <View style={{ height: 'auto', width: '100%', backgroundColor: '#FFFFFF', paddingTop: 40, }}>
+        <View style={SearchClothesStyles.body}>
             <ScrollView>
-            <StatusBar style="auto" />
-            <View style={{ paddingRight: '6%', paddingLeft: '6%', backgroundColor: '#FFFFFF', }}>
-                <View style={SearchClothesStyles.top}>
-                    <IconButton icon={'arrow-left'} style={SearchClothesStyles.leftArrow} />
-                    <Text style={SearchClothesStyles.SearchWord}>Search</Text>
-                    <IconButton icon={'tune-vertical'} color='#7D7D7D' style={SearchClothesStyles.tuneVertical} />
-                </View>
+                <StatusBar style="auto" />
+                <View style={SearchClothesStyles.topAndSearch}>
+                    <View style={SearchClothesStyles.top}>
+                        <IconButton icon={'arrow-left'} style={SearchClothesStyles.leftArrow} />
+                        <Text style={SearchClothesStyles.SearchWord}>Search</Text>
+                        <IconButton icon={'tune-vertical'} color='#7D7D7D' style={SearchClothesStyles.tuneVertical} />
+                    </View>
 
-                <View style={SearchClothesStyles.searchMenu}>
-                    <TextInput
-                        style={SearchClothesStyles.searchBar}
-                        theme={{
-                            roundness: 30
-                        }}
-                        underlineColor="#F7F8FD"
-                        placeholder="Search ..." placeholderTextColor={'#C8CBD2'}
-                        left={<TextInput.Icon icon={'magnify'} color='#C8CBD2' style={SearchClothesStyles.searchIcon} />}
-                        right={<TextInput.Icon icon={'tune-variant'} color='#C8CBD2' style={SearchClothesStyles.searchIcon} />}
-                    />
-                </View>
-            </View>
-
-            <ScrollView horizontal contentContainerStyle={SearchClothesStyles.firstHzScrollView} showsHorizontalScrollIndicator={false}>
-                <TouchableOpacity style={SearchClothesStyles.menuAllTouch}>
-                    <Text style={SearchClothesStyles.menuAll1}>All</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
-                    <Text style={SearchClothesStyles.menuAll}>Man</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
-                    <Text style={SearchClothesStyles.menuAll}>Woman</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
-                    <Text style={SearchClothesStyles.menuAll}>Dress</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
-                    <Text style={SearchClothesStyles.menuAll}>Baby</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
-                    <Text style={SearchClothesStyles.menuAll}>Kid</Text>
-                </TouchableOpacity>
-            </ScrollView>
-
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ backgroundColor: '#FFFFFF', marginTop: 10, gap: 10, }}>
-                {images.map((item, index) => (
-                    <View key={index}>
-                        <FirstImages
-                            rank={item.rank}
-                            name={item.name}
-                            price={item.price}
-                            imageSource={item.imageSource}
+                    <View style={SearchClothesStyles.searchMenu}>
+                        <TextInput
+                            style={SearchClothesStyles.searchBar}
+                            theme={{
+                                roundness: 30
+                            }}
+                            underlineColor="#F7F8FD"
+                            placeholder="Search ..." placeholderTextColor={'#C8CBD2'}
+                            left={<TextInput.Icon icon={'magnify'} color='#C8CBD2' style={SearchClothesStyles.searchIcon} />}
+                            right={<TextInput.Icon icon={'tune-variant'} color='#C8CBD2' style={SearchClothesStyles.searchIcon} />}
                         />
                     </View>
-                ))}
-            </ScrollView>
+                </View>
 
-            <Text style={{ fontSize: 18, fontWeight: 'bold', marginTop: 28, marginLeft: '6%', }}>Product Result(43)</Text>
+                <ScrollView horizontal contentContainerStyle={SearchClothesStyles.firstHzScrollView} showsHorizontalScrollIndicator={false}>
+                    <TouchableOpacity style={SearchClothesStyles.menuAllTouch}>
+                        <Text style={SearchClothesStyles.menuAll1}>All</Text>
+                    </TouchableOpacity>
 
-            <View style={style=SearchClothesStyles.menViewOverAll}>
-                {MenImages.map((item, index) => (
-                    <View key={index}>
-                        <Men
-                            icon={item.icon}
-                            shirtName={item.shirtName}
-                            shirtPrice={item.shirtPrice}
-                            imageSource1={item.imageSource1}
-                        />
-                    </View>
-                ))}
-                
-            </View>
+                    <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
+                        <Text style={SearchClothesStyles.menuAll}>Man</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
+                        <Text style={SearchClothesStyles.menuAll}>Woman</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
+                        <Text style={SearchClothesStyles.menuAll}>Dress</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
+                        <Text style={SearchClothesStyles.menuAll}>Baby</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={SearchClothesStyles.menuAllTouch1}>
+                        <Text style={SearchClothesStyles.menuAll}>Kid</Text>
+                    </TouchableOpacity>
+                </ScrollView>
+
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={SearchClothesStyles.secondHzScroll}>
+                    {images.map((item, index) => (
+                        <View key={index}>
+                            <FirstImages
+                                rank={item.rank}
+                                name={item.name}
+                                price={item.price}
+                                imageSource={item.imageSource}
+                            />
+                        </View>
+                    ))}
+                </ScrollView>
+
+                <Text style={{ fontSize: 18, fontWeight: 'bold', marginTop: 28, marginLeft: '6%', }}>Product Result(43)</Text>
+
+                <View style={style = SearchClothesStyles.menViewOverAll}>
+                    {MenImages.map((item, index) => (
+                        <View key={index}>
+                            <Men
+                                icon={item.icon}
+                                shirtName={item.shirtName}
+                                shirtPrice={item.shirtPrice}
+                                imageSource1={item.imageSource1}
+                            />
+                        </View>
+                    ))}
+
+                </View>
             </ScrollView>
         </View>
     )

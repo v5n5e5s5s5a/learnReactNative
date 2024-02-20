@@ -1,6 +1,17 @@
 import { StyleSheet } from "react-native";
 
 export const SearchClothesStyles = StyleSheet.create({
+    body: { 
+        height: 'auto', 
+        width: '100%', 
+        backgroundColor: '#FFFFFF', 
+        paddingTop: 40, 
+    },
+    topAndSearch: { 
+        paddingRight: '6%', 
+        paddingLeft: '6%', 
+        backgroundColor: '#FFFFFF', 
+    },
     top: {
         backgroundColor: '#FFFFFF',
         width: '100%',
@@ -33,7 +44,7 @@ export const SearchClothesStyles = StyleSheet.create({
         display: 'flex', 
         flexDirection: 'row',
         justifyContent: 'space-between', 
-        gap: 20, 
+        gap: 15, 
         marginTop: 20,
         marginLeft: '6%',
     },
@@ -63,6 +74,11 @@ export const SearchClothesStyles = StyleSheet.create({
     menuAll: {
         fontSize: 15,
         color: '#7C7C7C',
+    },
+    secondHzScroll: { 
+        backgroundColor: '#FFFFFF', 
+        marginTop: 10, 
+        gap: 10, 
     },
     rank: {
         position: 'absolute',
