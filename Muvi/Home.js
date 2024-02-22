@@ -5,7 +5,7 @@ import { IconButton } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import Feather from "react-native-vector-icons/Feather"
 import Fontisto from "react-native-vector-icons/Fontisto"
-import { Filter, FilterName } from "./Components";
+import { Filter, FilterName, MovieBrowseArray, MovieBrowseArray2, BrosweMovies } from "./Components";
 
 
 const height = Dimensions.get("screen")
@@ -79,7 +79,7 @@ export const Home = () => {
                         </View>
                     </View>
 
-                    <View style={{ backgroundColor: '#26282C', height: 'auto', width: '100%', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 20,}}>
+                    <View style={{ backgroundColor: '#26282C', height: 'auto', width: '100%', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 20, gap: 25, }}>
 
                         <ScrollView horizontal contentContainerStyle={{ display: 'flex', flexDirection: 'row', gap: 5, }}>
                             {FilterName.map((item, index) => (
@@ -90,11 +90,45 @@ export const Home = () => {
                                 </Text>
                             ))}
                         </ScrollView>
+
+                        <View style={{ display: 'flex', flexDirection: 'column', height: 'auto', backgroundColor: 'green',height: 200, width: '100%', }}>
+                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 'auto', width: '100%', justifyContent: 'space-between', paddingRight: 20, }}>
+                                <Text style={{color: 'white', fontSize: 22, fontWeight: 500,}}>New Release</Text>
+                                <Text style={{color: 'white', fontWeight: 100,}}>View More</Text>
+                            </View>
+
+                            <ScrollView horizontal contentContainerStyle={{ display: 'flex',height: 'auto', flexDirection: 'row', gap: 10, }}>
+                                {MovieBrowseArray.map((item, index) => (
+                                    <View key={index}>
+                                        < BrosweMovies
+                                            image={item.image}
+                                            rate={item.rate}
+                                        />
+                                    </View>
+                                ))}
+                            </ScrollView>
+                        </View>
+
+                        <View style={{ display: 'flex', flexDirection: 'column', height: 'auto', backgroundColor: 'green',height: 200, width: '100%', gap: 8,}}>
+                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 'auto', width: '100%', justifyContent: 'space-between', paddingRight: 20, }}>
+                                <Text style={{color: 'white', fontSize: 22, fontWeight: 500,}}>New Release</Text>
+                                <Text style={{color: 'white', fontWeight: 100,}}>View More</Text>
+                            </View>
+
+                            <ScrollView horizontal contentContainerStyle={{ display: 'flex',height: 'auto', flexDirection: 'row', gap: 10, }}>
+                                {MovieBrowseArray2.map((item, index) => (
+                                    <View key={index}>
+                                        < BrosweMovies
+                                            image={item.image}
+                                            rate={item.rate}
+                                        />
+                                    </View>
+                                ))}
+                            </ScrollView>
+                        </View>
                     </View>
 
-                    <View style={{ backgroundColor: 'blue', height: 'auto', width: '100%', alignItems: 'center', paddingHorizontal: 20, }}>
 
-                    </View>
 
 
                 </View>
