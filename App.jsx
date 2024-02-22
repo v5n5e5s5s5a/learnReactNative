@@ -8,19 +8,33 @@ import { Register } from './LoginRegister/Register';
 import { Home } from './LoginRegister/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { SearchClothes } from './Shopping/SearchClothes';
 import 'react-native-gesture-handler'
+import { SearchClothes } from '../learnReactNative/Shopping/SearchClothes';
+import { Splash } from './Muvi/Splash';
+import { Navigation } from './Muvi/Navigation';
+import { GetStarted } from './Muvi/GetStarted';
+import { Welcome } from './Muvi/Welcome';
+
 
 
 export default function App (){
   return(
-    <View>
-    {/* <Text>Hello</Text> */}
-    < SearchClothes/>
-    
-    </View>
+      <Navigation /> 
   )
 }
+
+
+
+// export default function App (){
+//   return(
+//     <View>
+//     {/* <Text>Hello</Text> */}
+//     < SearchClothes/>
+    
+//     </View>
+//   )
+// }
+
 
 // const Stack = createStackNavigator();
 // export default function App () {
