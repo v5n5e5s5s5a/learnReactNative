@@ -5,7 +5,7 @@ import React from "react";
 
 export const GetStarted = ({ navigation }) => {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{backgroundColor: '#26282C',}}>
             <View style={{ height: '100%', }}>
                 <StatusBar style="light" />
                 <ImageBackground source={require('../assets/joker.jpg')}

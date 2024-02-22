@@ -7,7 +7,8 @@ const width = Dimensions.get("screen")
 
 export const Welcome = ({ navigation }) => {
     return (
-        <View style={{ height: height, width: width, }}>
+        <View style={{ height: height, width: width, backgroundColor: '#26282C' }}>
+            
             <View style={{ display: 'flex', flexDirection: 'column', }}>
                 <StatusBar style="light" />
                 <View style={{ backgroundColor: '#1F2123', width: '100%', height: '12%', paddingBottom: 10, justifyContent: 'flex-end', alignItems: 'center', }}>
