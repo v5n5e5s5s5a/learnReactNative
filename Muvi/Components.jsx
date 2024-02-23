@@ -161,7 +161,8 @@ export const VerticalMovieBrowseArray = [
 
 export const BrowseMoviesVertical = ({ image, rate,}) => {
     return (
-            <View style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 200, backgroundColor: 'lime', borderRadius: 6,}}>
+        // borderColor: '#5D5F5F',
+            <View style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 200, backgroundColor: 'transparent', borderRadius: 6, borderWidth: 1, }}>
                 <Image source={image} style={{ width: '100%', height:'100%', borderRadius: 6,}} />
                 <View style={{ justifyContent: 'center', backgroundColor: '#F1B91A', alignItems: 'center', width: '12%', height: 'auto', position: 'absolute', borderRadius: 4, right: '4%', top: '4%',}}>
                     <Text style={{fontSize: 13, fontWeight: 500,}}>{rate}</Text>

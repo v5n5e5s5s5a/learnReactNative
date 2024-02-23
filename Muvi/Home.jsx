@@ -96,8 +96,6 @@ export const Home = () => {
                             ))}
 
                         </View>
-
-
                         {/*end of last Section */}
 
                     </View>

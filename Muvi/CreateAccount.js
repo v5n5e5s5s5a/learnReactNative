@@ -25,7 +25,7 @@ export const CreateAccount = ({ navigation }) => {
     const validateForm = () => {
         let valid = true
 
-        if (!email.trim()) {
+        if (email.trim() == '') {
             setEmailError('Email is required')
             valid = false
         } else if (!isValidEmail(email)) {
@@ -35,7 +35,7 @@ export const CreateAccount = ({ navigation }) => {
             setEmailError('')
         }
 
-        if (!password.trim()) {
+        if (password.trim() == '') {
             setPasswordError('Password is required')
             valid = false
         } else {
@@ -43,7 +43,7 @@ export const CreateAccount = ({ navigation }) => {
         }
 
 
-        if (!confirmPassword.trim()) {
+        if (confirmPassword.trim() == '') {
             setConfirmPasswordError('Confirm Password is required');
             valid = false;
         } else if (password !== confirmPassword) {
