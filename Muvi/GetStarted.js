@@ -45,7 +45,7 @@ export const GetStarted = ({ navigation }) => {
                     
                     <View style={{ width: '100%', height: '30%', }}></View>
                     <Pressable style={{ backgroundColor: '#F2B916', width: '100%', paddingVertical: 10, alignItems: 'center', borderRadius: 5, justifyContent: 'center', }} onPress={() => navigation.navigate('Welcome')}>
-                        <Text style={{ fontSize: 15, }} >Get Started</Text>
+                        <Text style={{ fontSize: 15, }}  >Get Started</Text>
                     </Pressable>
                 </View>
                 {/* </LinearGradient> */}

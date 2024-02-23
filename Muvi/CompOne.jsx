@@ -12,7 +12,7 @@ export const Header = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setShowSignInSuccess(false);
-        }, 1500);
+        }, 3000);
 
         return () => clearTimeout(timeout);
     }, []);
@@ -27,7 +27,7 @@ export const Header = () => {
         <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', paddingTop: 60, paddingBottom: 1, justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 15, }}>
             <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row', }}>
                 <View style={{ backgroundColor: '#1F2123', display: 'flex', flexDirection: 'row', paddingLeft: 20, alignItems: 'center', gap: 5, }}>
-                    <View style={{ backgroundColor: '#F3B919', paddingHorizontal: 14, borderRadius: 5, alignItems: 'center', }}>
+                    <View style={{ backgroundColor: '#F3B919', paddingHorizontal: 15, borderRadius: 5, alignItems: 'center', }}>
                         <Text style={{ fontSize: 25, fontWeight: '900', color: '#22221F', }}>M</Text>
                     </View>
                     <Text style={{ color: '#FFFFFF', fontSize: 25, fontWeight: 'bold', }}>Muvi</Text>
@@ -38,7 +38,7 @@ export const Header = () => {
                     <Fontisto name="bell" style={{ color: '#ECEEF0', fontSize: 20 }} />
                 </View>
             </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 45, alignItems: 'center', justifyContent: 'center', paddingLeft: 20, display: 'flex', flexDirection: 'row', }}>
+            <ScrollView horizontal contentContainerStyle={{ gap: 45, alignItems: 'center', justifyContent: 'center', paddingLeft: 20, display: 'flex', flexDirection: 'row', }}>
                 <View style={{ backgroundColor: '#1F2123', gap: 6, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', }}>
                     <Text style={{ fontSize: 16, color: '#FCCF33', }}>Featured</Text>
                     <View style={{ backgroundColor: '#FCCF33', height: 4, width: '75%', borderRadius: 15, }}></View>
@@ -129,12 +129,12 @@ export const MovieBrowseArray2 = [
     },
 ]
 
-export const BrowseMovies = ({ movie}) => {
+export const BrowseMovies = ({ image, rate,}) => {
     return (
             <View style={{ display: 'flex', flexDirection: 'row', width: 260, height: 140, backgroundColor: 'lime', borderRadius: 6,}}>
-                <Image source={{ uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}` }} style={{ width: '100%', height:'100%', borderRadius: 6,}} />
+                <Image source={image} style={{ width: '100%', height:'100%', borderRadius: 6,}} />
                 <View style={{ justifyContent: 'center', backgroundColor: '#F1B91A', alignItems: 'center', width: '12%', height: 'auto', position: 'absolute', borderRadius: 4, right: '4%', top: '4%',}}>
-                    <Text style={{fontSize: 13, fontWeight: 500,}}>{movie.vote_average}</Text>
+                    <Text style={{fontSize: 13, fontWeight: 500,}}>{rate}</Text>
                 </View>
             </View>
     )
@@ -157,23 +157,15 @@ export const VerticalMovieBrowseArray = [
         image: require('../assets/muviImages/batManCover.jpg'),
         rate: '8.3',
     },
-    {
-        image: require('../assets/muviImages/theWayBackCover.jpg'),
-        rate: '8.7',
-    },
-    {
-        image: require('../assets/muviImages/knivesOutCover.jpg'),
-        rate: '8.6',
-    },
 ]
 
-export const BrowseMoviesVertical = ({movie}) => {
+export const BrowseMoviesVertical = ({ image, rate,}) => {
     return (
         // borderColor: '#5D5F5F',
             <View style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 200, backgroundColor: 'transparent', borderRadius: 6, borderWidth: 1, }}>
-                <Image source={{ uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}` }} style={{ width: '100%', height:'100%', borderRadius: 6,}} />
+                <Image source={image} style={{ width: '100%', height:'100%', borderRadius: 6,}} />
                 <View style={{ justifyContent: 'center', backgroundColor: '#F1B91A', alignItems: 'center', width: '12%', height: 'auto', position: 'absolute', borderRadius: 4, right: '4%', top: '4%',}}>
-                    <Text style={{fontSize: 13, fontWeight: 500,}}>{movie.vote_average}</Text>
+                    <Text style={{fontSize: 13, fontWeight: 500,}}>{rate}</Text>
                 </View>
             </View>
     )

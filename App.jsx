@@ -5,7 +5,7 @@ import { ShippingBilling } from './screen/ShippingBilling';
 import { FourImages } from './images/FourImages';
 import { Login } from './LoginRegister/Login';
 import { Register } from './LoginRegister/Register';
-import { Home } from './LoginRegister/Home';
+//import { Home } from './LoginRegister/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler'
@@ -14,12 +14,20 @@ import { Splash } from './Muvi/Splash';
 import { Navigation } from './Muvi/Navigation';
 import { GetStarted } from './Muvi/GetStarted';
 import { Welcome } from './Muvi/Welcome';
+import MovieList from './Muvi/Try';
+import { Home } from './Muvi/Home';
+import { HomeOne } from './Muvi/HomeOne';
+
 
 
 
 export default function App (){
   return(
-      <Navigation /> 
+    <Navigation/>
+    // <View>
+    //   <Text>ihcbjkkbh</Text>
+    //   <HomeOne /> 
+    //   </View>
   )
 }
 

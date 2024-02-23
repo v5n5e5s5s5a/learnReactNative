@@ -88,7 +88,6 @@ export const Login = ({ navigation }) => {
                                     theme={{
                                         colors: {
                                             primary: '#FCD130',
-                                            text: 'white'
                                         }
                                     }}
                                     style={{ backgroundColor: 'transparent', width: '100%', textAlign: 'left', borderBottomWidth: 1, borderBottomColor: '#37393D', }}

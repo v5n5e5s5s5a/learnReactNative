@@ -31,7 +31,7 @@ export const Welcome = ({ navigation }) => {
 
                     <View style={{ width: '100%', height: '25%', }}></View>
                     <View style={{ backgroundColor: '#F6BA00', width: '100%', paddingVertical: 10, alignItems: 'center', borderRadius: 5, justifyContent: 'center', }}>
-                        <Text style={{ fontSize: 15, fontWeight: 500, }}>Watch Movie</Text>
+                        <Text style={{ fontSize: 15, fontWeight: 500, }} onPress={() => navigation.navigate('Home')}>Watch Movie</Text>
                     </View>
                     <Pressable onPress={() => navigation.navigate('CreateAccount')}>
                     <Text style={{ marginTop: 15, fontSize: 15, color: '#F3F3F3', fontWeight: 300, }}  >Sign In</Text>
