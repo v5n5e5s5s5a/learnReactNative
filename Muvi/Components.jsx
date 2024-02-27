@@ -135,23 +135,23 @@ export const BrowseMoviesVertical = ({ movie }) => {
 
 //start of bottom navigation
 
-export const BottomNavigation = ({ iconColorHome, iconColorSearch, iconColorFolder, iconColorGrid, onHomePress, onSearchPress, onFolderPress, onGridPress }) => {
+export const BottomNavigation = ({ iconColorHome, iconColorSearch, iconColorList, iconColorProfile, onHomePress, onSearchPress, onListPress, onProfilePress }) => {
     return (
         <View style={{ position: 'absolute', display: 'flex', flexDirection: 'row', backgroundColor: '#1F2123', justifyContent: 'space-between', width: '100%', bottom: 0, paddingHorizontal: 20, paddingVertical: 10, alignItems: 'center', }}>
             <Pressable onPress={onHomePress}>
-                <Feather name={'home'} style={{ color: iconColorHome, fontSize: 26 }}/>
+                <Feather name={'home'} style={{ color: iconColorHome, fontSize: 26 }} />
             </Pressable>
 
             <Pressable onPress={onSearchPress}>
-                <Feather name={'search'} style={{ color: iconColorSearch, fontSize: 26 }}/>
+                <Feather name={'search'} style={{ color: iconColorSearch, fontSize: 26 }} />
             </Pressable>
 
-            <Pressable onPress={onFolderPress}>
-                <Feather name={'folder'} style={{ color: iconColorFolder, fontSize: 26 }}/>
+            <Pressable onPress={onListPress}>
+                <Feather name={'folder'} style={{ color: iconColorList, fontSize: 26 }} />
             </Pressable>
 
-            <Pressable onPress={onGridPress}>
-                <Feather name={'grid'} style={{ color: iconColorGrid, fontSize: 26 }}/>
+            <Pressable onPress={onProfilePress}>
+                <Feather name={'grid'} style={{ color: iconColorProfile, fontSize: 26 }} />
             </Pressable>
         </View>
     )
@@ -159,19 +159,24 @@ export const BottomNavigation = ({ iconColorHome, iconColorSearch, iconColorFold
 
 //end of bottom navigation
 
+//Start of List Component
+export const ListComponent = ({ movie, Genre }) => {
+    return (
+        <View style={{ width: '100%', height: 110, display: 'flex', flexDirection: 'row', gap: -50, backgroundColor: 'transparent',}}>
+            <ImageBackground source={{ uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}` }} style={{ width: '75%', height: '100%', }}/>
+            <View style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'transparent', width: '35%', }}>
+                <Text style={{ color: '#F0F1F5', fontSize: 13,}}>{movie.title}</Text>
+                <Text style={{ color: '#AAABAF', top: '3%', }}>{movie.release_date}</Text>
+                <Text style={{ color: '#97989C', top: '2%',}}>{Genre}</Text>
+            </View>
 
+        </View>
+    )
+}
+//End of List Component
 
-{/* <View style={{height: height, width: width,}}>
-<StatusBar style="light"/>
-<View style={{backgroundColor: '#1F2123', height: 'auto', width: '100%', paddingHorizontal: 20,}}>
-    <TextInput 
-    style={{width: '100%',}}
-    placeholder="Search"
-    right={<TextInput.Icon icon={'magnify'} />}
-    />
-</View>
-<ScrollView>
-    <Text>lkjhcgvhbj</Text>
-</ScrollView>
-
-</View> > */}
+{/*            <View style={{ display: 'flex', flex: 'column', }}>
+                <Text style={{ color: '#F0F1F5', }}>{movie.title}</Text>
+                <Text style={{ color: '#F0F1F5', }}>{movie.release_date}</Text>
+                <Text style={{ color: '#5E6064', }}>{Genre}</Text>
+            </View> */ }

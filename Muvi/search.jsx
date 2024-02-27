@@ -14,12 +14,12 @@ export const Search = ({ navigation }) => {
         navigation.navigate('Search');
     };
 
-    const handleFolderPress = () => {
-        navigation.navigate('Folder');
+    const handleListPress = () => {
+        navigation.navigate('List');
     };
 
-    const handleGridPress = () => {
-        navigation.navigate('Grid');
+    const handleProfilePress = () => {
+        navigation.navigate('Profile');
     };
 
     const [moviesSearch2, setMoviesSearch2] = useState([]);
@@ -66,7 +66,7 @@ export const Search = ({ navigation }) => {
                     right={<TextInput.Icon icon={'magnify'} color={'#A2A4A5'} />}
                 />
             </View>
-            <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: 'red', }}>
+            <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: '#1A1C1E', }}>
                 <StatusBar style="light" />
                 <View style={{ display: 'flex', flexDirection: 'column', gap: 10, backgroundColor: '#26282C', height: 'auto', width: '100%', paddingHorizontal: 20, paddingBottom: 20, paddingTop: 10, }}>
                     <Text style={{ color: '#A2A4A5', }}>Search result for Disney</Text>
@@ -77,14 +77,15 @@ export const Search = ({ navigation }) => {
                     ))}
                 </View>
             </ScrollView>
-            <BottomNavigation
+            {/* <BottomNavigation
                 iconColorHome={'#C4C6C7'}
                 iconColorSearch={'#E5C053'}
-                iconColorFolder={'#C4C6C7'}
-                iconColorGrid={'#C4C6C7'}
+                iconColorList={'#C4C6C7'}
+                iconColorProfile={'#C4C6C7'}
                 onSearchPress={handleSearchPress}
                 onHomePress={handleHomePress}
-            />
+                onListPress={handleListPress}
+            /> */}
         </View>
     )
 }

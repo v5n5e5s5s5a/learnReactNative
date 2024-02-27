@@ -24,12 +24,12 @@ export const Home = ({ navigation }) => {
         navigation.navigate('Search');
     };
 
-    const handleFolderPress = () => {
-        navigation.navigate('Folder');
+    const handleListPress = () => {
+        navigation.navigate('List');
     };
 
-    const handleGridPress = () => {
-        navigation.navigate('Grid');
+    const handleProfilePress = () => {
+        navigation.navigate('Profile');
     };
 
     
@@ -58,17 +58,9 @@ export const Home = ({ navigation }) => {
     }, [])
 
     const [movies2, setMovies2] = useState([]);
-    const options2 = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDA3MDQ0OTE0Y2EwZjkzNDY0MjIxZjYxMmQ1OWZhNSIsInN1YiI6IjY1ZDg2ZDQyYTI4NGViMDEyZjg3OTIyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5GE0TQ0QzjxJEJ-YCTphGe6isMUhYtEz1Gey066mdYw'
-        }
-    };
-
     const fetchMovies2 = () => {
 
-        fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options2)
+        fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
             .then(response => response.json())
             .then(response => {
                 setMovies2(response.results)
@@ -80,18 +72,11 @@ export const Home = ({ navigation }) => {
         fetchMovies2()
     }, [])
 
-    const [moviesVertical, SetMoviesVertical] = useState([]);
-    const options3 = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDA3MDQ0OTE0Y2EwZjkzNDY0MjIxZjYxMmQ1OWZhNSIsInN1YiI6IjY1ZDg2ZDQyYTI4NGViMDEyZjg3OTIyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5GE0TQ0QzjxJEJ-YCTphGe6isMUhYtEz1Gey066mdYw'
-        }
-    };
 
+    const [moviesVertical, SetMoviesVertical] = useState([]);
     const fetchMoviesVertical = () => {
 
-        fetch('https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1', options3)
+        fetch('https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1', options)
             .then(response => response.json())
             .then(response => {
                 SetMoviesVertical(response.results)
@@ -108,7 +93,7 @@ export const Home = ({ navigation }) => {
 
         <View style={{ flex: 1, }}>
             <Header />
-            <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: 'blue', }}>
+            <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: '#1A1C1E', }}>
                 <SafeAreaView style={{ backgroundColor: '#26282C', flex: 1 }}>
 
                     <View style={{ display: 'flex', flexDirection: 'column', }}>
@@ -185,13 +170,13 @@ export const Home = ({ navigation }) => {
                     </View>
                 </SafeAreaView>
             </ScrollView>
-            <BottomNavigation
+            {/* <BottomNavigation
                 iconColorHome={'#E5C053'}
                 iconColorSearch={'#C4C6C7'}
-                iconColorFolder={'#C4C6C7'}
-                iconColorGrid={'#C4C6C7'}
+                iconColorList={'#C4C6C7'}
+                iconColorProfile={'#C4C6C7'}
                 onSearchPress={handleSearchPress}
-            />
+            /> */}
         </View>
 
     )
