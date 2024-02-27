@@ -14,9 +14,7 @@ import { Splash } from './Muvi/Splash';
 import { Navigation } from './Muvi/Navigation';
 import { GetStarted } from './Muvi/GetStarted';
 import { Welcome } from './Muvi/Welcome';
-import MovieList from './Muvi/Try';
 import { Home } from './Muvi/Home';
-import { HomeOne } from './Muvi/HomeOne';
 
 
 
@@ -24,10 +22,6 @@ import { HomeOne } from './Muvi/HomeOne';
 export default function App (){
   return(
     <Navigation/>
-    // <View>
-    //   <Text>ihcbjkkbh</Text>
-    //   <HomeOne /> 
-    //   </View>
   )
 }
 

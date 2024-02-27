@@ -7,6 +7,7 @@ import {Splash} from './Splash';
 import { Login } from './Login';
 import { CreateAccount } from './CreateAccount';
 import { Home } from './Home';
+import { Search } from './search';
 
 
 const Stack = createStackNavigator();
@@ -21,6 +22,7 @@ export const Navigation = () => {
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ headerShown: false }}/>
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+        <Stack.Screen name="Search" component={Search} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
