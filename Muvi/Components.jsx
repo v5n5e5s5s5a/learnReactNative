@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, ImageBackground, Pressable } from "react-native";
-import { IconButton } from "react-native-paper";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { IconButton, TextInput } from "react-native-paper";
 import Feather from "react-native-vector-icons/Feather";
 import Fontisto from "react-native-vector-icons/Fontisto"
 
@@ -99,17 +100,17 @@ export function Filter({ name }) {
 
 //Start of Horizontal Movie Broswe Component
 
-export const BrowseMovies = ({ movie }) => {
+export const BrowseMovies = ({ movie, onPressImage }) => {
     return (
-        <View style={{ display: 'flex', flexDirection: 'column', width: 250, height: 140, backgroundColor: 'transparent', borderRadius: 6, }}>
-            <Image source={{ uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}` }} style={{ width: '100%', height: '100%', borderRadius: 6, resizeMode: 'cover', }} />
+        <TouchableOpacity style={{ display: 'flex', flexDirection: 'column', width: 250, height: 140, backgroundColor: 'transparent', borderRadius: 6, }} onPress={onPressImage}>
+            <Image source={{ uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}` }} style={{ width: '100%', height: '100%', borderRadius: 6, resizeMode: 'cover', }}  />
             <View style={{ justifyContent: 'center', backgroundColor: '#F1B91A', alignItems: 'center', width: 'auto', height: 'auto', position: 'absolute', borderRadius: 4, right: '2%', top: '4%', paddingHorizontal: 4, }}>
                 <Text style={{ fontSize: 13, fontWeight: 500, }}>{movie.vote_average}</Text>
             </View>
             <View style={{ justifyContent: 'center', backgroundColor: '#F1B91A', alignItems: 'center', width: 'auto', height: 'auto', position: 'absolute', borderRadius: 4, paddingHorizontal: 10, alignSelf: 'center', bottom: '1%', }}>
                 <Text style={{ fontSize: 16, fontWeight: 400, color: 'black', }}>{movie.original_title}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 //End of Horizontal Movie Broswe Component
@@ -117,10 +118,10 @@ export const BrowseMovies = ({ movie }) => {
 
 //Start of Vertical Movie Broswe Component
 
-export const BrowseMoviesVertical = ({ movie }) => {
+export const BrowseMoviesVertical = ({ movie, onPressImage }) => {
     return (
         // borderColor: '#5D5F5F',
-        <View style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 200, backgroundColor: 'transparent', borderRadius: 6, borderWidth: 1, }}>
+        <TouchableOpacity style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 200, backgroundColor: 'transparent', borderRadius: 6, borderWidth: 1, }} onPress={onPressImage}>
             <ImageBackground source={{ uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}` }} style={{ width: '100%', height: '100%', }} borderRadius={7} />
             <View style={{ justifyContent: 'center', backgroundColor: '#F1B91A', alignItems: 'center', width: '12%', height: 'auto', position: 'absolute', borderRadius: 4, right: '4%', top: '4%', }}>
                 <Text style={{ fontSize: 13, fontWeight: 500, }}>{movie.vote_average}</Text>
@@ -128,7 +129,7 @@ export const BrowseMoviesVertical = ({ movie }) => {
             <View style={{ justifyContent: 'center', backgroundColor: '#F1B91A', alignItems: 'center', width: '60%', height: 'auto', position: 'absolute', borderRadius: 4, bottom: '1%', alignSelf: 'center', }}>
                 <Text style={{ fontSize: 16, fontWeight: 500, color: 'black', }}>{movie.name}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 //End of Vertical Movie Broswe Component
@@ -160,23 +161,60 @@ export const BottomNavigation = ({ iconColorHome, iconColorSearch, iconColorList
 //end of bottom navigation
 
 //Start of List Component
-export const ListComponent = ({ movie, Genre }) => {
+export const ListComponent = ({ movieLis, Genre, onPressImage }) => {
     return (
-        <View style={{ width: '100%', height: 110, display: 'flex', flexDirection: 'row', gap: -50, backgroundColor: 'transparent',}}>
-            <ImageBackground source={{ uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}` }} style={{ width: '75%', height: '100%', }}/>
-            <View style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'transparent', width: '35%', }}>
-                <Text style={{ color: '#F0F1F5', fontSize: 13,}}>{movie.title}</Text>
-                <Text style={{ color: '#AAABAF', top: '3%', }}>{movie.release_date}</Text>
-                <Text style={{ color: '#97989C', top: '2%',}}>{Genre}</Text>
+        <TouchableOpacity style={{ width: '100%', height: 110, display: 'flex', flexDirection: 'row', gap: -50, backgroundColor: 'transparent',}} onPress={onPressImage}>
+            <ImageBackground source={{ uri: `https://image.tmdb.org/t/p/w500/${movieLis.poster_path}` }} style={{ width: '75%', height: '100%', }}/>
+            <View style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'transparent', width: '40%', }}>
+                <Text style={{ color: '#F0F1F5', fontSize: 13,}}>{movieLis.title}</Text>
+                <Text style={{ color: '#AAABAF', top: '3%', }}>{movieLis.release_date}</Text>
+                
+                <View style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap',}}>
+                {Genre.map((genre,index) =>{
+                    
+                    if (movieLis.genre_ids.includes(genre.id)){
+                        return(
+                            <Text key={index} style={{ color: '#97989C', top: '2%', fontSize: 12, display: 'flex', flexDirection: 'row',}}>{`${genre.name}, `}</Text>
+                        )
+                    }
+                    
+                } )}
+                </View>
+                
             </View>
 
-        </View>
+        </TouchableOpacity>
     )
 }
 //End of List Component
+ 
 
-{/*            <View style={{ display: 'flex', flex: 'column', }}>
-                <Text style={{ color: '#F0F1F5', }}>{movie.title}</Text>
-                <Text style={{ color: '#F0F1F5', }}>{movie.release_date}</Text>
-                <Text style={{ color: '#5E6064', }}>{Genre}</Text>
-            </View> */ }
+//start of BrowseMoviesAction component
+
+export const BrowseMoviesAction = ({ movie, onPressImage }) => {
+    return (
+        <TouchableOpacity style={{ display: 'flex', flexDirection: 'column', width: 100, height: 160, backgroundColor: 'transparent',  }} onPress={onPressImage}>
+            <Image source={{ uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}` }} style={{ width: '100%', height: '100%', resizeMode: 'cover', }}  />
+        </TouchableOpacity>
+    )
+}
+
+//end of BrowseMoviesAction component
+
+//start of EditProfile Component
+
+export const TextInputComp = ({placeholder, iconName, }) => {
+    <TextInput 
+    placeholder={placeholder} placeholderTextColor={"#555759"}
+    theme={{
+        colors: {
+            primary: '#F9CC30',
+        }
+    }}
+    underlineColor="#555759"
+    right={<TextInput.Icon icon={iconName} color={'#F9CC30'}/>}
+    textColor="#white"
+    />
+}
+
+//end of EditProfile Component

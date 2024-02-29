@@ -7,6 +7,7 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const Profile = ({ navigation }) => {
     const height = Dimensions.get("screen")
@@ -25,10 +26,10 @@ export const Profile = ({ navigation }) => {
                             <Text style={{ color: '#C2C3C3', fontSize: 15, }}>Jonathan Doe</Text>
                             <Text style={{ color: '#646667', fontSize: 12, }}>doe.jonathan@gmail.com</Text>
                         </View>
-                        <View style={{ display: 'flex', flexDirection: 'row', backgroundColor: 'transparent', alignItems: 'center', gap: 5, }}>
+                        <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', backgroundColor: 'transparent', alignItems: 'center', gap: 5, }} onPress={()=> navigation.navigate('EditProfile')}>
                             <Octicons name="pencil" color={'#B9992D'} size={20} />
                             <Text style={{ fontSize: 13, color: '#B9992D', }}>Edit</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>

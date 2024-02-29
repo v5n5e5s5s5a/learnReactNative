@@ -10,8 +10,11 @@ import { Home } from './Home';
 import { Search } from './search';
 import { List } from './List';
 import { Profile } from './Profile';
+import { Action } from './Action';
+import { EditProfile } from './EditProfile';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Feather from "react-native-vector-icons/Feather";
+
 
 
 const Stack = createStackNavigator();
@@ -26,10 +29,14 @@ export const MainNavigator = () => {
       <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
       <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ headerShown: false }} />
+
       <Stack.Screen name="Home" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Search" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="List" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Profile" component={TabNavigator} options={{ headerShown: false }} />
+
+      <Stack.Screen name="Action" component={Action} options={{ headerShown: false }} />
+      <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }} />
     </Stack.Navigator>
 
   );

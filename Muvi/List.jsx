@@ -5,8 +5,8 @@ import { IconButton, TextInput } from "react-native-paper";
 import { BottomNavigation, ListComponent } from "./Components";
 
 export const List = ({ navigation }) => {
-    const handleHomePress = () => {
-        navigation.navigate('Home');
+    const handleImagePress = () => {
+        navigation.navigate('Action');
     };
 
     const handleSearchPress = () => {
@@ -32,7 +32,7 @@ export const List = ({ navigation }) => {
 
     const fetchMovies = () => {
 
-        fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
+        fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
             .then(response => response.json())
             .then(response => {
                 setMoviesList(response.results)
@@ -42,6 +42,24 @@ export const List = ({ navigation }) => {
     };
     useEffect(() => {
         fetchMovies()
+    }, [])
+
+    const [genres, setGenres] = useState([]);
+    const fetchGenres = () => {
+
+        fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+            .then(response => response.json())
+            .then(response => {
+                console.log(response)
+                setGenres(response.genres)
+
+            })
+            .catch(err => console.error(err));
+            console.log(setGenres);
+
+    };
+    useEffect(() => {
+        fetchGenres()
     }, [])
     return (
         <View>
@@ -72,14 +90,16 @@ export const List = ({ navigation }) => {
                 </View>
             </View>
             {/* end of Header */}
-            <ScrollView style={{backgroundColor: '#26282C',}}>
+            <ScrollView style={{ backgroundColor: '#26282C', }}>
                 <View style={{ display: 'flex', flexDirection: 'column', gap: 10, backgroundColor: '#26282C', height: 'auto', width: '100%', paddingHorizontal: 20, paddingBottom: 150, paddingTop: 20, }}>
                     {moviesList.map((movie, index) => (
                         <ListComponent key={index}
-                            movie={movie}
-                            Genre={'Drama'}
+                            movieLis={movie}
+                            Genre={genres}
+                            onPressImage={handleImagePress}
                         />
                     ))}
+                    
                 </View>
             </ScrollView>
             {/* <BottomNavigation
