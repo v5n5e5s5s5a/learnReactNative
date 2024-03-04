@@ -16,16 +16,22 @@ const width = Dimensions.get("screen")
 
 export const Home = ({ navigation }) => {
 
-    const handleImagePress = () => {
-        navigation.navigate('Action');
+    const handleImagePress = (id, title, overview) => {
+        console.log(id);
+        console.log('this is the title', title);
+        console.log('this is the overview', overview);
+        navigation.navigate('Action', { movieid: id, movieTitle: title, movieOverview: overview });
+
     };
 
-    // const handleImagePress = (movieId) => {
-    //     // Navigate to the details screen and pass the movie ID
-    //     navigation.navigate('Details', { movieId });
-    // };
+    const handleImagePressTV = (id, name, overview) => {
+        console.log(id);
+        console.log('this is the TV name', name);
+        console.log('this is the TV overview', overview);
+        navigation.navigate('ActionTV', { movieid: id, movieName: name, movieOverview: overview });
+    };
 
-    const [movies, setMovies] = useState([]);
+
     const options = {
         method: 'GET',
         headers: {
@@ -34,6 +40,7 @@ export const Home = ({ navigation }) => {
         }
     };
 
+    const [movies, setMovies] = useState([]);
     const fetchMovies = () => {
 
         fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
@@ -47,6 +54,8 @@ export const Home = ({ navigation }) => {
     useEffect(() => {
         fetchMovies()
     }, [])
+
+
 
     const [movies2, setMovies2] = useState([]);
     const fetchMovies2 = () => {
@@ -115,9 +124,9 @@ export const Home = ({ navigation }) => {
 
                                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ display: 'flex', height: 'auto', flexDirection: 'row', gap: 10, }}>
                                     {movies.map((movie, index) => (
-                                            <BrowseMovies  key={index} movie={movie} 
-                                            onPressImage={handleImagePress}
-                                            />
+                                        <BrowseMovies key={index} movie={movie}
+                                            onPressImage={() => { handleImagePress(movie.id, movie.title, movie.overview) }}
+                                        />
                                     ))}
                                 </ScrollView>
                             </View>
@@ -130,9 +139,8 @@ export const Home = ({ navigation }) => {
 
                                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ display: 'flex', height: 'auto', flexDirection: 'row', gap: 10, }}>
                                     {movies2.map((movie, index) => (
-                                        <BrowseMovies key={index}
-                                            movie={movie}
-                                            onPressImage={handleImagePress}
+                                        <BrowseMovies key={index} movie={movie}
+                                            onPressImage={() => { handleImagePress(movie.id, movie.title, movie.overview) }}
                                         />
                                     ))}
                                 </ScrollView>
@@ -151,7 +159,7 @@ export const Home = ({ navigation }) => {
                             {moviesVertical.map((movie, index) => (
                                 <BrowseMoviesVertical key={index}
                                     movie={movie}
-                                    onPressImage={handleImagePress}
+                                    onPressImage={() => { handleImagePressTV(movie.id, movie.name, movie.overview) }}
                                 />
                             ))}
 

@@ -6,7 +6,10 @@ import AntDesign from "react-native-vector-icons/AntDesign"
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from "react-native-vector-icons/Ionicons"
 import Feather from "react-native-vector-icons/Feather"
-// import YoutubePlayer from "react-native-youtube-iframe"
+import YoutubePlayer from "react-native-youtube-iframe"
+
+
+
 import {
     Filter, FilterName, MovieBrowseArray, MovieBrowseArray2, BrowseMovies,
     BrowseMoviesVertical, VerticalMovieBrowseArray, BottomNavigation, Header, BrowseMoviesAction
@@ -17,16 +20,14 @@ import YoutubeIframe from "react-native-youtube-iframe";
 const height = Dimensions.get("screen")
 const width = Dimensions.get("screen")
 
-export const Action = ({ navigation, route }) => {
+export const ActionTV = ({ navigation, route }) => {
 
     const { movieid } = route.params;
-    const { movieTitle } = route.params;
+    const { movieName } = route.params;
     const { movieOverview } = route.params;
     console.log("this is from action:", movieid);
-    console.log("this is title from Home in action:", movieTitle);
+    console.log("this is title from Home in action:", movieName);
     console.log("this is overview from Home in action:", movieOverview);
-
-
 
     const [movies, setMovies] = useState([]);
     const options = {
@@ -71,7 +72,7 @@ export const Action = ({ navigation, route }) => {
     const [trailer, SetTrailer] = useState([]);
     const fetchMovieTrailer = () => {
 
-        fetch(`https://api.themoviedb.org/3/movie/${movieid}/videos?language=en-US`, options)
+        fetch(`https://api.themoviedb.org/3/tv/${movieid}/videos?language=en-US`, options)
             .then(response => response.json())
             .then(response => {
                 SetTrailer(response.results)
@@ -86,6 +87,9 @@ export const Action = ({ navigation, route }) => {
     const trailerKeys = trailer.length > 0 ? trailer.map(trailerkey => trailerkey.key) : [];
     console.log("Trailer keys:", trailerKeys);
 
+    const handlePlaybtn = () => {
+        setPlaying(!playing)
+    }
 
     return (
 
@@ -104,25 +108,30 @@ export const Action = ({ navigation, route }) => {
 
                         <View style={{ height: 20, }}></View>
 
-                        <View style={{ width: '100%', backgroundColor: '#26282C', height: 170,}}>
-                            <YoutubeIframe   
+                        <View style={{ width: '100%', backgroundColor: '#26282C', height: 170, }}>
+                            <YoutubeIframe
                                 height={170}
                                 width={'100%'}
-                                play={playing} 
+                                play={playing}
                                 videoId={trailerKeys[0]}
+
                             />
+                            {/* <Pressable onPress={handlePlaybtn} style={{ display: 'flex', flexDirection: 'row', gap: 3, backgroundColor: '#FDD130', alignItems: 'center', width: '20%', paddingVertical: 10, paddingLeft: 20, borderRadius: 5, position: 'absolute', alignSelf: 'center', top: '40%',}}>
+                                <Feather name="play" size={15} color={'#1F2123'} />
+                                <Text style={{ color: '#1F2123', }}>Play</Text>
+                            </Pressable> */}
                         </View>
 
                         <View style={{ height: 15, }}></View>
-                        <View style={{ display: 'flex', flexDirection: 'column', gap: 5, width: '85%', backgroundColor: 'transparent', }}>
-                            <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold', }}>{movieTitle}</Text>
+                        <View style={{ display: 'flex', flexDirection: 'column', gap: 5, width: '100%', backgroundColor: 'transparent', }}>
+                            <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold', }}>{movieName}</Text>
                             <Text style={{ color: '#A8AAAE', fontSize: 13, fontWeight: 200, }}>{movieOverview}</Text>
                         </View>
 
                         <View style={{ height: 20, }}></View>
 
                         <View style={{ display: 'flex', flexDirection: 'row', gap: 10, }}>
-                            <Pressable style={{ display: 'flex', flexDirection: 'row', gap: 3, backgroundColor: '#FDD130', alignItems: 'center', width: '48%', paddingVertical: 10, paddingLeft: 20, borderRadius: 5, }}>
+                            <Pressable onPress={handlePlaybtn} style={{ display: 'flex', flexDirection: 'row', gap: 3, backgroundColor: '#FDD130', alignItems: 'center', width: '48%', paddingVertical: 10, paddingLeft: 20, borderRadius: 5, }}>
                                 <Feather name="play" size={15} color={'#1F2123'} />
                                 <Text style={{ color: '#1F2123', }}>Play</Text>
                             </Pressable>

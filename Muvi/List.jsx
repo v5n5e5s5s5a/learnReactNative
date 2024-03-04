@@ -5,21 +5,12 @@ import { IconButton, TextInput } from "react-native-paper";
 import { BottomNavigation, ListComponent } from "./Components";
 
 export const List = ({ navigation }) => {
-    const handleImagePress = () => {
-        navigation.navigate('Action');
+    const handleImagePress = (id) => {
+        console.log(id);
+        navigation.navigate('Action', {movieid:id});
+
     };
 
-    const handleSearchPress = () => {
-        navigation.navigate('Search');
-    };
-
-    const handleListPress = () => {
-        navigation.navigate('List');
-    };
-
-    const handleProfilePress = () => {
-        navigation.navigate('Profile');
-    };
 
     const [moviesList, setMoviesList] = useState([]);
     const options = {
@@ -96,7 +87,7 @@ export const List = ({ navigation }) => {
                         <ListComponent key={index}
                             movieLis={movie}
                             Genre={genres}
-                            onPressImage={handleImagePress}
+                            onPressImage={()=> {handleImagePress(movie.id)}}
                         />
                     ))}
                     

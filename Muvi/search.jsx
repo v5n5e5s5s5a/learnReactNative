@@ -6,20 +6,16 @@ import { BottomNavigation, BrowseMoviesVertical, ListComponent } from "./Compone
 
 export const Search = ({ navigation }) => {
 
-    const handleImagePress = () => {
-        navigation.navigate('Action');
+    const handleImagePress = (id) => {
+        console.log(id);
+        navigation.navigate('Action', {movieid:id});
+
     };
 
-    const handleSearchPress = () => {
-        navigation.navigate('Search');
-    };
+    const handleImagePressTV = (id) => {
+        console.log(id);
+        navigation.navigate('ActionTV', {movieid:id});
 
-    const handleListPress = () => {
-        navigation.navigate('List');
-    };
-
-    const handleProfilePress = () => {
-        navigation.navigate('Profile');
     };
 
     const options = {
@@ -111,34 +107,27 @@ export const Search = ({ navigation }) => {
                 <StatusBar style="light" />
                 {!initialSearchStatus ? (
                     <View style={{ display: 'flex', flexDirection: 'column', gap: 10, backgroundColor: '#26282C', height: 'auto', width: '100%', paddingHorizontal: 20, paddingBottom: 20, paddingTop: 10, }}>
-                        <Text style={{ color: '#A2A4A5', }}>Search result for Disney</Text>
+                        <Text style={{ color: '#A2A4A5', }}>Suggestions</Text>
                         {moviesSearch2.map((movie, index) => (
                             <BrowseMoviesVertical key={index}
                                 movie={movie}
-                                onPressImage={handleImagePress}
+                                onPressImage={()=>{handleImagePressTV(movie.id)}}
                             />
                         ))}
                     </View>
                 ) : (
                     <View style={{ display: 'flex', flexDirection: 'column', gap: 10, backgroundColor: '#26282C', height: 'auto', width: '100%', paddingHorizontal: 20, paddingBottom: 150, paddingTop: 20, }}>
+                        <Text style={{ color: '#A2A4A5', }}>{searchText}</Text>
                         {searchedResult.map((result, index) => (
                             <ListComponent key={index}
                                 movieLis={result}
                                 Genre={genres}
+                                onPressImage={()=>{handleImagePress(result.id)}}
                             />
                         ))}
                     </View>
                 )}
             </ScrollView>
-            {/* <BottomNavigation
-                iconColorHome={'#C4C6C7'}
-                iconColorSearch={'#E5C053'}
-                iconColorList={'#C4C6C7'}
-                iconColorProfile={'#C4C6C7'}
-                onSearchPress={handleSearchPress}
-                onHomePress={handleHomePress}
-                onListPress={handleListPress}
-            /> */}
         </View>
     )
 }

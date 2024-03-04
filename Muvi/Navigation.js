@@ -14,6 +14,8 @@ import { Action } from './Action';
 import { EditProfile } from './EditProfile';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Feather from "react-native-vector-icons/Feather";
+import { ActionTV } from './ActionTV';
+
 
 
 
@@ -36,6 +38,7 @@ export const MainNavigator = () => {
       <Stack.Screen name="Profile" component={TabNavigator} options={{ headerShown: false }} />
 
       <Stack.Screen name="Action" component={Action} options={{ headerShown: false }} />
+      <Stack.Screen name="ActionTV" component={ActionTV} options={{ headerShown: false }} />
       <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }} />
     </Stack.Navigator>
 
