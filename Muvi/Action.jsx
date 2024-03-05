@@ -19,9 +19,9 @@ const width = Dimensions.get("screen")
 
 export const Action = ({ navigation, route }) => {
 
-    const { movieid } = route.params;
-    const { movieTitle } = route.params;
-    const { movieOverview } = route.params;
+    const { movieid, movieTitle, movieOverview } = route.params;
+    // const {  } = route.params;
+    // const {  } = route.params;
     console.log("this is from action:", movieid);
     console.log("this is title from Home in action:", movieTitle);
     console.log("this is overview from Home in action:", movieOverview);
@@ -94,7 +94,7 @@ export const Action = ({ navigation, route }) => {
             <SafeAreaView style={{ backgroundColor: '#26282C', flex: 1, paddingTop: 40, }}>
 
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 20, paddingBottom: 10, }}>
-                    <AntDesign name="arrowleft" size={25} color={'#E9D160'} onPress={() => navigation.navigate('Home')} />
+                    <AntDesign name="arrowleft" size={25} color={'#E9D160'} onPress={() => navigation.goBack()} />
                     <Text style={{ color: 'white', fontSize: 17, fontWeight: 700, }}>Action</Text>
                 </View>
 
