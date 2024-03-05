@@ -86,6 +86,9 @@ export const Action = ({ navigation, route }) => {
     const trailerKeys = trailer.length > 0 ? trailer.map(trailerkey => trailerkey.key) : [];
     console.log("Trailer keys:", trailerKeys);
 
+    const handlePlaybtn = () => {
+        setPlaying(!playing)
+    }
 
     return (
 
@@ -122,7 +125,7 @@ export const Action = ({ navigation, route }) => {
                         <View style={{ height: 20, }}></View>
 
                         <View style={{ display: 'flex', flexDirection: 'row', gap: 10, }}>
-                            <Pressable style={{ display: 'flex', flexDirection: 'row', gap: 3, backgroundColor: '#FDD130', alignItems: 'center', width: '48%', paddingVertical: 10, paddingLeft: 20, borderRadius: 5, }}>
+                            <Pressable onPress={handlePlaybtn} style={{ display: 'flex', flexDirection: 'row', gap: 3, backgroundColor: '#FDD130', alignItems: 'center', width: '48%', paddingVertical: 10, paddingLeft: 20, borderRadius: 5, }}>
                                 <Feather name="play" size={15} color={'#1F2123'} />
                                 <Text style={{ color: '#1F2123', }}>Play</Text>
                             </Pressable>

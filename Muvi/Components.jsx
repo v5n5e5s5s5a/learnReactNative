@@ -108,7 +108,7 @@ export const BrowseMovies = ({ movie, onPressImage }) => {
                 <Text style={{ fontSize: 13, fontWeight: 500, }}>{movie.vote_average}</Text>
             </View>
             <View style={{ justifyContent: 'center', backgroundColor: '#F1B91A', alignItems: 'center', width: 'auto', height: 'auto', position: 'absolute', borderRadius: 4, paddingHorizontal: 10, alignSelf: 'center', bottom: '1%', }}>
-                <Text style={{ fontSize: 16, fontWeight: 400, color: 'black', }}>{movie.original_title}</Text>
+                <Text style={{ fontSize: 16, fontWeight: 400, color: 'black', }}>{movie.title}</Text>
             </View>
         </TouchableOpacity>
     )
