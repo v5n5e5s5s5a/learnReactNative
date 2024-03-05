@@ -5,9 +5,9 @@ import { IconButton, TextInput } from "react-native-paper";
 import { BottomNavigation, ListComponent } from "./Components";
 
 export const List = ({ navigation }) => {
-    const handleImagePress = (id) => {
+    const handleImagePress = (id, title, overview) => {
         console.log(id);
-        navigation.navigate('Action', {movieid:id});
+        navigation.navigate('Action', {movieid:id, movieTitle: title, movieOverview: overview,});
 
     };
 
@@ -87,7 +87,7 @@ export const List = ({ navigation }) => {
                         <ListComponent key={index}
                             movieLis={movie}
                             Genre={genres}
-                            onPressImage={()=> {handleImagePress(movie.id)}}
+                            onPressImage={()=> {handleImagePress(movie.id, movie.title, movie.overview)}}
                         />
                     ))}
                     
