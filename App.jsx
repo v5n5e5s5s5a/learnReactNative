@@ -15,6 +15,7 @@ import { MainNavigator, TabNavigator } from './Muvi/Navigation';
 import { GetStarted } from './Muvi/GetStarted';
 import { Welcome } from './Muvi/Welcome';
 import { Home } from './Muvi/Home';
+import { AuthProvider } from './Muvi/Authentication';
 
 
 
@@ -22,8 +23,9 @@ import { Home } from './Muvi/Home';
 export default function App (){
   return (
     <NavigationContainer>
-      {/* <TabNavigator /> */}
-      <MainNavigator />
+      <AuthProvider>
+        <MainNavigator />
+      </AuthProvider>
     </NavigationContainer>
   );
 }

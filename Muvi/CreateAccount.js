@@ -5,6 +5,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput, Icon, IconButton } from "react-native-paper";
 import Fontisto from "react-native-vector-icons/Fontisto"
 import AntDesign from "react-native-vector-icons/AntDesign"
+import { firebaseAuth } from "../firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
+
 
 const height = Dimensions.get("screen")
 const width = Dimensions.get("screen")
@@ -56,22 +60,44 @@ export const CreateAccount = ({ navigation }) => {
         return valid
     }
 
-    const handleSubmit = () => {
+
+    const handleSubmit = async () => {
         if (validateForm()) {
-            navigation.navigate('Login')
+            try {
+                const response = await createUserWithEmailAndPassword(firebaseAuth, email, password)
+                console.log(response);
+                console.log('Registered successfully');
+                showMessage({
+                    message: "Successfully Signed Up",
+                    type: "success",
+                    icon: "info",
+                    hideStatusBar: true,
+                    duration: 3000,
+                });
+                navigation.navigate('Login');
+            } catch (error) {
+                console.log(error);
+                showMessage({
+                    message: error.code,
+                    type: "danger",
+                    icon: "info",
+                    duration: 3000,
+                });
+            } 
         }
     }
 
 
     return (
         <View style={{ height: height, width: width, flex: 1, backgroundColor: '#26282C', }}>
+            <FlashMessage position="top" />
             <SafeAreaView style={{ backgroundColor: '#26282C', height: height, width: width, flex: 1, }}>
                 <StatusBar style="light" />
                 <View style={{ backgroundColor: '#26282C', paddingHorizontal: 20, width: '100%', height: '100%', display: 'flex', flexDirection: 'column', }}>
                     <View style={{ width: '100%', height: '6%', backgroundColor: 'transparent', }}></View>
 
                     <View style={{ backgroundColor: 'transparent', display: 'flex', width: '100%', flexDirection: 'row', paddingLeft: -5, justifyContent: 'flex-start', gap: 5 }}>
-                        <AntDesign name="arrowleft" style={{ fontSize: 30, color: '#F3D235', }} onPress={() => navigation.navigate('Welcome')} />
+                        <AntDesign name="arrowleft" style={{ fontSize: 30, color: '#F3D235', }} onPress={() => navigation.goBack()} />
                     </View>
 
                     <View style={{ width: '100%', height: '4%', backgroundColor: 'transparent', }}></View>

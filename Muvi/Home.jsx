@@ -4,6 +4,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { IconButton } from "react-native-paper";
 import Feather from "react-native-vector-icons/Feather"
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
     Filter, FilterName, MovieBrowseArray, MovieBrowseArray2, BrowseMovies,
@@ -88,7 +89,14 @@ export const Home = ({ navigation }) => {
         fetchMoviesVertical()
     }, [])
 
-
+    const getData = async ()  => {
+        let data = await AsyncStorage.getItem('user-data')
+        console.log(data);
+    }
+    
+    useEffect(() => {
+        getData()
+    }, [])
     return (
 
         <View style={{ flex: 1, }}>

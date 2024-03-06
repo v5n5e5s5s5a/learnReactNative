@@ -8,10 +8,24 @@ import Feather from 'react-native-vector-icons/Feather'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useAuth } from "./Authentication";
+import { CommonActions } from "@react-navigation/native";
 
 export const Profile = ({ navigation }) => {
     const height = Dimensions.get("screen")
     const width = Dimensions.get("screen")
+    const { logout } = useAuth();
+
+    const handleLogout = () => {
+        logout();
+        // navigation.navigate('Login');
+        navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'Login' }]
+            })
+          );
+      };
     return (
         <View style={{height: height, width: width, backgroundColor: '#25272A',}}>
             <StatusBar style="light" />
@@ -73,7 +87,7 @@ export const Profile = ({ navigation }) => {
 
                     <View style={{ height: 165, backgroundColor: 'transparent', }}></View>
 
-                    <Pressable style={{ width: '100%', height: 'auto', backgroundColor: 'transparent', borderWidth: 1, borderColor: '#646667', paddingVertical: 10, alignItems: 'center', justifyContent: 'center', borderRadius: 5, }}>
+                    <Pressable onPress={handleLogout} style={{ width: '100%', height: 'auto', backgroundColor: 'transparent', borderWidth: 1, borderColor: '#646667', paddingVertical: 10, alignItems: 'center', justifyContent: 'center', borderRadius: 5, }}>
                         <Text style={{ color: '#DC826C', textAlign: 'center', }}>Log Out</Text>
                     </Pressable>
                 </View>

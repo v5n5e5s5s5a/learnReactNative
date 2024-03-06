@@ -3,7 +3,13 @@ import { View, Text, ImageBackground, Image, Dimensions, Pressable, SafeAreaView
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput, Icon, IconButton } from "react-native-paper";
-import Fontisto from "react-native-vector-icons/Fontisto"
+import Fontisto from "react-native-vector-icons/Fontisto";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CommonActions } from "@react-navigation/native";
+import { firebaseAuth } from "../firebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import FlashMessage,  { showMessage, hideMessage } from "react-native-flash-message";
+
 
 const height = Dimensions.get("screen")
 const width = Dimensions.get("screen")
@@ -15,12 +21,13 @@ export const Login = ({ navigation }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [secureTextEntry, setSecureTextEntry] = useState(true);
 
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         return emailRegex.test(email)
     }
+    
     const validateForm = () => {
         let valid = true
 
@@ -44,14 +51,50 @@ export const Login = ({ navigation }) => {
         return valid
     }
 
-    const handleSubmit = () => {
-        if (validateForm()) {
-            navigation.navigate('Home')
-        }
+    const data = {
+        email: email,
+        password: password
     }
+
+    const handleSubmit = async () => {
+        if (validateForm()) {
+            try {
+                const response = await signInWithEmailAndPassword(firebaseAuth, email, password)
+                navigation.dispatch(
+                    CommonActions.reset({
+                      index: 0,
+                      routes: [{ name: 'Home' }]
+                    })
+                  );
+                await AsyncStorage.setItem('user-data', JSON.stringify(data))
+                console.log(response);
+                console.log('you are now signed in');
+                showMessage({
+                    message: "Successfully Signed In",
+                    type: "success",
+                    icon: "info",
+                    duration: "3000",
+                  });
+
+            } catch (error) {
+                console.log(error)
+                showMessage({
+                    message: error.code,
+                    type: "danger",
+                    icon: "info",
+                    duration: "3000",
+                  });
+            }
+
+        }
+
+    }
+
+
 
     return (
         <View style={{ height: height, width: width, }}>
+            <FlashMessage position="top" />
             <SafeAreaView style={{ backgroundColor: '#26282C', }}>
                 <View style={{ height: '100%', }}>
                     <StatusBar style="light" />
@@ -116,16 +159,19 @@ export const Login = ({ navigation }) => {
                                     underlineColor="#37393D"
                                     textColor="white"
                                     placeholder="Password" placeholderTextColor={'#B8B7C0'}
-                                    right={<TextInput.Icon icon={'eye-off-outline'} color='#F6A035' />}
-                                    secureTextEntry={true}
+                                    secureTextEntry={secureTextEntry}
+                                    right={<TextInput.Icon icon={secureTextEntry? 'eye-off-outline': 'eye-outline'} color='#F6A035' onPress={()=> setSecureTextEntry(!secureTextEntry)} />}
                                     value={password}
                                     onChangeText={setPassword}
                                     error={passwordError}
                                 />
                                 {passwordError ? <Text style={{ color: 'red', }}>{passwordError}</Text> : null}
 
+                                <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', }}>
+                                    <Text style={{ color: '#B8B7C0', fontSize: 12, }}>Don't Have an account? <Text style={{color: '#F6A035', fontSize: 15,}} onPress={()=> {navigation.navigate('CreateAccount')}}>Register</Text></Text>
+                                    <Text style={{ color: '#B8B7C0', fontSize: 12, }}>Forgot Password?</Text>
+                                </View>
 
-                                <Text style={{ color: '#B8B7C0', textAlign: 'right' }}>Forgot Password?</Text>
                                 <View style={{ width: '100%', height: '2%', backgroundColor: 'transparent', }}></View>
                                 <Text style={{ color: '#B8B7C0', textAlign: 'left' }}>or continue with:</Text>
 
