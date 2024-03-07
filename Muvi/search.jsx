@@ -11,7 +11,7 @@ export const Search = ({ navigation }) => {
     const [genres, setGenres] = useState([]);
 
     const handleImagePress = (id, title, overview) => {
-        navigation.navigate("Action", {
+        navigation.navigate("Details", {
             movieid: id,
             movieTitle: title,
             movieOverview: overview,
@@ -19,7 +19,7 @@ export const Search = ({ navigation }) => {
     };
 
     const handleImagePressTV = (id, name, overview) => {
-        navigation.navigate("ActionTV", {
+        navigation.navigate("DetailsTV", {
             movieid: id,
             movieName: name,
             movieOverview: overview,

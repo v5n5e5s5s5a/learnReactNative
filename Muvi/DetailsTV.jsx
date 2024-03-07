@@ -28,20 +28,20 @@ import {
   VerticalMovieBrowseArray,
   BottomNavigation,
   Header,
-  BrowseMoviesAction,
+  BrowseMoviesDetails,
 } from "./Components";
 import YoutubeIframe from "react-native-youtube-iframe";
 
 const height = Dimensions.get("screen");
 const width = Dimensions.get("screen");
 
-export const ActionTV = ({ navigation, route }) => {
+export const DetailsTV = ({ navigation, route }) => {
   const { movieid } = route.params;
   const { movieName } = route.params;
   const { movieOverview } = route.params;
-  console.log("this is from action:", movieid);
-  console.log("this is title from Home in action:", movieName);
-  console.log("this is overview from Home in action:", movieOverview);
+  console.log("this is from Details:", movieid);
+  console.log("this is title from Home in Details:", movieName);
+  console.log("this is overview from Home in Details:", movieOverview);
 
   const [movies, setMovies] = useState([]);
   const options = {
@@ -133,7 +133,7 @@ export const ActionTV = ({ navigation, route }) => {
             onPress={() => navigation.navigate("Home")}
           />
           <Text style={{ color: "white", fontSize: 17, fontWeight: 700 }}>
-            Action
+            Details
           </Text>
         </View>
 
@@ -287,7 +287,7 @@ export const ActionTV = ({ navigation, route }) => {
                 >
                   {movies.map((movie, index) => (
                     <View key={index}>
-                      <BrowseMoviesAction movie={movie} />
+                      <BrowseMoviesDetails movie={movie} />
                     </View>
                   ))}
                 </ScrollView>
@@ -319,7 +319,7 @@ export const ActionTV = ({ navigation, route }) => {
                   <Text
                     style={{ color: "white", fontSize: 18, fontWeight: 500 }}
                   >
-                    Muvi Original Action
+                    Muvi Original Details
                   </Text>
                 </View>
 
@@ -334,7 +334,7 @@ export const ActionTV = ({ navigation, route }) => {
                   }}
                 >
                   {movies2.map((movie, index) => (
-                    <BrowseMoviesAction key={index} movie={movie} />
+                    <BrowseMoviesDetails key={index} movie={movie} />
                   ))}
                 </ScrollView>
               </View>

@@ -8,6 +8,9 @@ import AntDesign from "react-native-vector-icons/AntDesign"
 import { firebaseAuth } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { GoogleSignin, GoogleSigninButton, statusCodes } from "@react-native-google-signin/google-signin";
+
 
 
 const height = Dimensions.get("screen")
@@ -21,6 +24,7 @@ export const CreateAccount = ({ navigation }) => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [secureTextEntry, setSecureTextEntry] = useState(true);
 
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -61,6 +65,11 @@ export const CreateAccount = ({ navigation }) => {
     }
 
 
+    const data = {
+        email: email,
+        password: password
+    }
+
     const handleSubmit = async () => {
         if (validateForm()) {
             try {
@@ -74,7 +83,11 @@ export const CreateAccount = ({ navigation }) => {
                     hideStatusBar: true,
                     duration: 3000,
                 });
-                navigation.navigate('Login');
+               setTimeout(() => {
+                navigation.navigate('Login', {email, password});
+               }, 3000); 
+                await AsyncStorage.setItem('user-data', JSON.stringify(data))
+                
             } catch (error) {
                 console.log(error);
                 showMessage({
@@ -87,7 +100,25 @@ export const CreateAccount = ({ navigation }) => {
         }
     }
 
-
+    // const handleGoogleSignIn = async () => {
+    //     try {
+    //         await GoogleSignin.hasPlayServices();
+    //         const userInfo = await GoogleSignin.signIn();
+    //         console.log(userInfo);
+    //     } catch (error) {
+    //         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+    //             // User canceled the sign-in process
+    //           } else if (error.code === statusCodes.IN_PROGRESS) {
+    //             // Operation (e.g., sign-in) is in progress already
+    //           } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+    //             // Play services not available or outdated on the device
+    //           } else {
+    //             // Some other error occurred
+    //             console.error(error);
+    //           }
+    //     }
+    // }
+    
     return (
         <View style={{ height: height, width: width, flex: 1, backgroundColor: '#26282C', }}>
             <FlashMessage position="top" />
@@ -140,8 +171,8 @@ export const CreateAccount = ({ navigation }) => {
                             mode="outline"
                             underlineColor="#37393D"
                             placeholder="Password" placeholderTextColor={'#B8B7C0'}
-                            right={<TextInput.Icon icon={'eye-off-outline'} color='#F6A035' />}
-                            secureTextEntry={true}
+                            secureTextEntry={secureTextEntry}
+                            right={<TextInput.Icon icon={secureTextEntry? 'eye-outline': 'eye-off-outline'} color='#F6A035' onPress={() => {setSecureTextEntry(!secureTextEntry)}} />}
                             value={password}
                             onChangeText={setPassword}
                             error={passwordError}
@@ -160,8 +191,8 @@ export const CreateAccount = ({ navigation }) => {
                             mode="outline"
                             underlineColor="#37393D"
                             placeholder="Confirm Password" placeholderTextColor={'#B8B7C0'}
-                            right={<TextInput.Icon icon={'eye-off-outline'} color='#F6A035' />}
-                            secureTextEntry={true}
+                            secureTextEntry={secureTextEntry}
+                            right={<TextInput.Icon icon={secureTextEntry? 'eye-outline': 'eye-off-outline'} color='#F6A035' onPress={() => {setSecureTextEntry(!secureTextEntry)}} />}
                             value={confirmPassword}
                             onChangeText={setConfirmPassword}
                             error={passwordError}

@@ -9,7 +9,7 @@ import Feather from "react-native-vector-icons/Feather"
 // import YoutubePlayer from "react-native-youtube-iframe"
 import {
     Filter, FilterName, MovieBrowseArray, MovieBrowseArray2, BrowseMovies,
-    BrowseMoviesVertical, VerticalMovieBrowseArray, BottomNavigation, Header, BrowseMoviesAction
+    BrowseMoviesVertical, VerticalMovieBrowseArray, BottomNavigation, Header, BrowseMoviesDetails
 } from "./Components";
 import YoutubeIframe from "react-native-youtube-iframe";
 
@@ -17,14 +17,14 @@ import YoutubeIframe from "react-native-youtube-iframe";
 const height = Dimensions.get("screen")
 const width = Dimensions.get("screen")
 
-export const Action = ({ navigation, route }) => {
+export const Details = ({ navigation, route }) => {
 
     const { movieid, movieTitle, movieOverview } = route.params;
     // const {  } = route.params;
     // const {  } = route.params;
-    console.log("this is from action:", movieid);
-    console.log("this is title from Home in action:", movieTitle);
-    console.log("this is overview from Home in action:", movieOverview);
+    console.log("this is from Details:", movieid);
+    console.log("this is title from Home in Details:", movieTitle);
+    console.log("this is overview from Home in Details:", movieOverview);
 
 
 
@@ -98,7 +98,7 @@ export const Action = ({ navigation, route }) => {
 
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 20, paddingBottom: 10, }}>
                     <AntDesign name="arrowleft" size={25} color={'#E9D160'} onPress={() => navigation.goBack()} />
-                    <Text style={{ color: 'white', fontSize: 17, fontWeight: 700, }}>Action</Text>
+                    <Text style={{ color: 'white', fontSize: 17, fontWeight: 700, }}>Details</Text>
                 </View>
 
                 <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: '#1A1C1E', }}>
@@ -144,14 +144,14 @@ export const Action = ({ navigation, route }) => {
                             {/* Start of Horizontal Movie Broswe */}
                             <View style={{ display: 'flex', flexDirection: 'column', height: 'auto', backgroundColor: 'transparent', height: 200, width: '100%', gap: 8, }}>
                                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 'auto', width: '100%', justifyContent: 'space-between', paddingRight: 20, }}>
-                                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 500, }}>U.S Action Movies</Text>
+                                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 500, }}>U.S Details Movies</Text>
                                 </View>
 
 
                                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ display: 'flex', height: 'auto', flexDirection: 'row', gap: 10, }}>
                                     {movies.map((movie, index) => (
                                         <View key={index}>
-                                            <BrowseMoviesAction
+                                            <BrowseMoviesDetails
                                                 movie={movie}
                                             />
                                         </View>
@@ -161,12 +161,12 @@ export const Action = ({ navigation, route }) => {
 
                             <View style={{ display: 'flex', flexDirection: 'column', height: 'auto', backgroundColor: 'transparent', height: 200, width: '100%', gap: 8, marginTop: -22, }}>
                                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 'auto', width: '100%', justifyContent: 'space-between', paddingRight: 20, }}>
-                                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 500, }}>Muvi Original Action</Text>
+                                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 500, }}>Muvi Original Details</Text>
                                 </View>
 
                                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ display: 'flex', height: 'auto', flexDirection: 'row', gap: 10, }}>
                                     {movies2.map((movie, index) => (
-                                        <BrowseMoviesAction key={index}
+                                        <BrowseMoviesDetails key={index}
                                             movie={movie}
                                         />
                                     ))}

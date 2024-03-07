@@ -189,9 +189,9 @@ export const ListComponent = ({ movieLis, Genre, onPressImage }) => {
 //End of List Component
  
 
-//start of BrowseMoviesAction component
+//start of BrowseMoviesDetails component
 
-export const BrowseMoviesAction = ({ movie, onPressImage }) => {
+export const BrowseMoviesDetails = ({ movie, onPressImage }) => {
     return (
         <TouchableOpacity style={{ display: 'flex', flexDirection: 'column', width: 100, height: 160, backgroundColor: 'transparent',  }} onPress={onPressImage}>
             <Image source={{ uri: `https://image.tmdb.org/t/p/w500/${movie.poster_path}` }} style={{ width: '100%', height: '100%', resizeMode: 'cover', }}  />
@@ -199,7 +199,7 @@ export const BrowseMoviesAction = ({ movie, onPressImage }) => {
     )
 }
 
-//end of BrowseMoviesAction component
+//end of BrowseMoviesDetails component
 
 //start of EditProfile Component
 

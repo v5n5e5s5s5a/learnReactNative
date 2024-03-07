@@ -3,8 +3,9 @@ import { Text, View, ScrollView, ActivityIndicator, Dimensions, SafeAreaView } f
 import React, { useEffect, useState } from "react";
 import { IconButton, TextInput } from "react-native-paper";
 import { BottomNavigation, ListComponent } from "./Components";
+import 'react-native-gesture-handler'
 
-export const List = ({ navigation }) => {
+export const Adventure = ({ navigation }) => {
     const handleImagePress = (id, title, overview) => {
         console.log(id);
         navigation.navigate('Details', {movieid:id, movieTitle: title, movieOverview: overview,});

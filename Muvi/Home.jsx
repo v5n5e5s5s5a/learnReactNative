@@ -3,13 +3,15 @@ import { View, Text, ImageBackground, Image, Dimensions, Pressable, SafeAreaView
 import React, { useEffect, useState, useCallback } from "react";
 import { IconButton } from "react-native-paper";
 import Feather from "react-native-vector-icons/Feather"
+import Fontisto from "react-native-vector-icons/Fontisto"
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import {
     Filter, FilterName, MovieBrowseArray, MovieBrowseArray2, BrowseMovies,
     BrowseMoviesVertical, VerticalMovieBrowseArray, BottomNavigation, Header
 } from "./Components";
+import { HeaderHome } from "./Header";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 
 const height = Dimensions.get("screen")
@@ -21,7 +23,7 @@ export const Home = ({ navigation }) => {
         console.log(id);
         console.log('this is the title', title);
         console.log('this is the overview', overview);
-        navigation.navigate('Action', { movieid: id, movieTitle: title, movieOverview: overview });
+        navigation.navigate('Details', { movieid: id, movieTitle: title, movieOverview: overview });
 
     };
 
@@ -29,7 +31,7 @@ export const Home = ({ navigation }) => {
         console.log(id);
         console.log('this is the TV name', name);
         console.log('this is the TV overview', overview);
-        navigation.navigate('ActionTV', { movieid: id, movieName: name, movieOverview: overview });
+        navigation.navigate('DetailsTV', { movieid: id, movieName: name, movieOverview: overview });
     };
 
 
@@ -40,6 +42,7 @@ export const Home = ({ navigation }) => {
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDA3MDQ0OTE0Y2EwZjkzNDY0MjIxZjYxMmQ1OWZhNSIsInN1YiI6IjY1ZDg2ZDQyYTI4NGViMDEyZjg3OTIyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5GE0TQ0QzjxJEJ-YCTphGe6isMUhYtEz1Gey066mdYw'
         }
     };
+
 
     const [movies, setMovies] = useState([]);
     const fetchMovies = () => {
@@ -83,24 +86,67 @@ export const Home = ({ navigation }) => {
                 SetMoviesVertical(response.results)
             })
             .catch(err => console.error(err));
+        console.log(moviesVertical);
 
     };
     useEffect(() => {
         fetchMoviesVertical()
     }, [])
 
-    const getData = async ()  => {
+    const getData = async () => {
         let data = await AsyncStorage.getItem('user-data')
         console.log(data);
     }
-    
+
     useEffect(() => {
         getData()
     }, [])
+
+
+    const [genresHome, setGenresHome] = useState([])
+    const fetchHeaderGenres = () => {
+        fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+            .then(response => response.json())
+            .then(response => {
+                setGenresHome(response.genres)
+            })
+            .catch(err => console.error(err));
+    }
+
+    useEffect(() => {
+        fetchHeaderGenres()
+        console.log("these are genres", genresHome);
+    }, [])
+
     return (
 
         <View style={{ flex: 1, }}>
-            <Header />
+            <View style={{ zIndex: 1, }}>
+                <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', paddingTop: 60, paddingBottom: 1, justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 15, }}>
+                    <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row', }}>
+                        <View style={{ backgroundColor: '#1F2123', display: 'flex', flexDirection: 'row', paddingLeft: 20, alignItems: 'center', gap: 5, }}>
+                            <View style={{ backgroundColor: '#F3B919', paddingHorizontal: 14, borderRadius: 5, alignItems: 'center', }}>
+                                <Text style={{ fontSize: 25, fontWeight: '900', color: '#22221F', }}>M</Text>
+                            </View>
+                            <Text style={{ color: '#FFFFFF', fontSize: 25, fontWeight: 'bold', }}>Muvi</Text>
+                        </View>
+
+                        <View style={{ backgroundColor: '#1F2123', gap: 20, width: 'auto', alignItems: 'center', paddingRight: 20, display: 'flex', flexDirection: 'row', paddingBottom: 7, paddingTop: 6, justifyContent: 'flex-end', }}>
+                            <Feather name="bookmark" style={{ color: '#ECEEF0', fontSize: 20, }} />
+                            <Fontisto name="bell" style={{ color: '#ECEEF0', fontSize: 20 }} />
+                        </View>
+                    </View>
+
+
+                    {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 45, alignItems: 'center', justifyContent: 'center', paddingLeft: 20, display: 'flex', flexDirection: 'row', }}>
+                        {genresHome.map((genreItem, index) => (
+                            <HeaderHome key={index}
+                                genre={genreItem.name}
+                            />
+                        ))}
+                    </ScrollView > */}
+                </View>
+            </View>
             <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: '#1A1C1E', }}>
                 <SafeAreaView style={{ backgroundColor: '#26282C', flex: 1 }}>
 

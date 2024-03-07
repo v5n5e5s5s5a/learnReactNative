@@ -16,6 +16,8 @@ import { GetStarted } from './Muvi/GetStarted';
 import { Welcome } from './Muvi/Welcome';
 import { Home } from './Muvi/Home';
 import { AuthProvider } from './Muvi/Authentication';
+import { Adventure } from './Muvi/Adventure';
+
 
 
 
@@ -27,6 +29,9 @@ export default function App (){
         <MainNavigator />
       </AuthProvider>
     </NavigationContainer>
+
+
+    
   );
 }
 

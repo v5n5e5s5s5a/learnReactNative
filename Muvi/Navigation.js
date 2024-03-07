@@ -1,6 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+// import { createDrawerNavigator } from '@react-navigation/drawer';
+import 'react-native-gesture-handler';
 import { GetStarted } from './GetStarted';
 import { Welcome } from './Welcome';
 import { Splash } from './Splash';
@@ -10,17 +14,18 @@ import { Home } from './Home';
 import { Search } from './search';
 import { List } from './List';
 import { Profile } from './Profile';
-import { Action } from './Action';
+import { Details } from './Details';
 import { EditProfile } from './EditProfile';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Feather from "react-native-vector-icons/Feather";
-import { ActionTV } from './ActionTV';
-
-
-
+import { DetailsTV } from './DetailsTV';
+import { HeaderHome } from './Header';
+import { View, ScrollView, Text } from 'react-native';
+import { Adventure } from './Adventure';
+// import DrawerNavigation from './DrawerNavigation';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const Top = createMaterialTopTabNavigator();
 
 export const MainNavigator = () => {
   return (
@@ -37,14 +42,23 @@ export const MainNavigator = () => {
       <Stack.Screen name="List" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Profile" component={TabNavigator} options={{ headerShown: false }} />
 
-      <Stack.Screen name="Action" component={Action} options={{ headerShown: false }} />
-      <Stack.Screen name="ActionTV" component={ActionTV} options={{ headerShown: false }} />
+      <Stack.Screen name="Details" component={Details} options={{ headerShown: false }} />
+      <Stack.Screen name="DetailsTV" component={DetailsTV} options={{ headerShown: false }} />
       <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }} />
     </Stack.Navigator>
 
   );
 };
 
+// export const HomeContainer = ({ navigation }) => {
+//   return (
+//       <ScrollView nestedScrollEnabled={false}>
+//         <TopNavigator navigation={navigation} />
+//         <Home navigation={navigation} />
+//       </ScrollView>
+
+//   );
+// };
 
 export const TabNavigator = () => {
   return (
@@ -59,7 +73,7 @@ export const TabNavigator = () => {
             iconName = 'search';
           } else if (route.name === 'List1') {
             iconName = 'folder';
-          }else if (route.name === 'Profile1') {
+          } else if (route.name === 'Profile1') {
             iconName = 'grid';
           }
 
@@ -70,7 +84,7 @@ export const TabNavigator = () => {
           backgroundColor: '#1F2123',
           borderTopColor: '#1F2123',
         },
-        
+
         tabBarShowLabel: false,
         headerShown: false,
       })}
@@ -79,7 +93,19 @@ export const TabNavigator = () => {
       <Tab.Screen name="Search1" component={Search} options={{ headerShown: false }} />
       <Tab.Screen name="List1" component={List} options={{ headerShown: false }} />
       <Tab.Screen name="Profile1" component={Profile} options={{ headerShown: false }} />
-    </Tab.Navigator>
+
+     </Tab.Navigator>
   );
 };
+
+
+
+export const TopNavigator = ({ navigation }) => {
+  return (
+    <Top.Navigator>
+      <Top.Screen name="Adventure" component={Adventure} options={{ headerShown: false }} />
+    </Top.Navigator>
+  );
+};
+
 

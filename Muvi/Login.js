@@ -14,7 +14,7 @@ import FlashMessage,  { showMessage, hideMessage } from "react-native-flash-mess
 const height = Dimensions.get("screen")
 const width = Dimensions.get("screen")
 
-export const Login = ({ navigation }) => {
+export const Login = ({ route, navigation }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,6 +22,14 @@ export const Login = ({ navigation }) => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+    useEffect(() => {
+        const {email: routeEmail, password: routePassword} = route.params || {};
+        if (routeEmail && routePassword) {
+            setEmail(routeEmail);
+            setPassword(routePassword);
+        }
+     },[route.params]);
 
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -56,10 +64,20 @@ export const Login = ({ navigation }) => {
         password: password
     }
 
+
+
     const handleSubmit = async () => {
-        if (validateForm()) {
             try {
                 const response = await signInWithEmailAndPassword(firebaseAuth, email, password)
+                console.log(response);
+                console.log('you are now signed in');
+                showMessage({
+                    message: "Successfully Signed In",
+                    type: "success",
+                    icon: "info",
+                    duration: 3000,
+                });
+                
                 navigation.dispatch(
                     CommonActions.reset({
                       index: 0,
@@ -67,26 +85,16 @@ export const Login = ({ navigation }) => {
                     })
                   );
                 await AsyncStorage.setItem('user-data', JSON.stringify(data))
-                console.log(response);
-                console.log('you are now signed in');
-                showMessage({
-                    message: "Successfully Signed In",
-                    type: "success",
-                    icon: "info",
-                    duration: "3000",
-                  });
-
+                
             } catch (error) {
                 console.log(error)
                 showMessage({
                     message: error.code,
                     type: "danger",
                     icon: "info",
-                    duration: "3000",
+                    duration: 3000,
                   });
             }
-
-        }
 
     }
 
@@ -160,7 +168,7 @@ export const Login = ({ navigation }) => {
                                     textColor="white"
                                     placeholder="Password" placeholderTextColor={'#B8B7C0'}
                                     secureTextEntry={secureTextEntry}
-                                    right={<TextInput.Icon icon={secureTextEntry? 'eye-off-outline': 'eye-outline'} color='#F6A035' onPress={()=> setSecureTextEntry(!secureTextEntry)} />}
+                                    right={<TextInput.Icon icon={secureTextEntry? 'eye-outline': 'eye-off-outline'} color='#F6A035' onPress={()=> setSecureTextEntry(!secureTextEntry)} />}
                                     value={password}
                                     onChangeText={setPassword}
                                     error={passwordError}
