@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, ScrollView, Text } from "react-native";
 import { TextInput, IconButton } from "react-native-paper";
 import { BrowseMoviesVertical, ListComponent } from "./Components";
+import { useAuth } from "./Authentication";
+import { StatusBar } from "expo-status-bar";
 
 export const Search = ({ navigation }) => {
     const [searchText, setSearchText] = useState("");
@@ -10,7 +12,10 @@ export const Search = ({ navigation }) => {
     const [searchedResult, setSearchedResult] = useState([]);
     const [genres, setGenres] = useState([]);
 
+    const { data, lightMode, changeToLightMode } = useAuth();
+
     const handleImagePress = (id, title, overview) => {
+
         navigation.navigate("Details", {
             movieid: id,
             movieTitle: title,
@@ -90,9 +95,10 @@ export const Search = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
+            <StatusBar style={lightMode ? 'light' : 'dark'} />
             <View
                 style={{
-                    backgroundColor: "#1F2123",
+                    backgroundColor: lightMode?"#1F2123":'white',
                     height: "auto",
                     width: "100%",
                     paddingHorizontal: 20,
@@ -103,21 +109,21 @@ export const Search = ({ navigation }) => {
                 <TextInput
                     theme={{
                         colors: {
-                            primary: "#FCD130",
+                            primary: lightMode?"#FCD130":'black',
                         },
                         roundness: 8,
                     }}
-                    textColor="white"
+                    textColor="gray"
                     style={{
                         width: "100%",
-                        backgroundColor: "#303234",
+                        backgroundColor: lightMode?"#303234":'white',
                         height: 40,
                         borderRadius: 8,
                     }}
                     height
                     underlineColor="#1F2123"
                     placeholder="Search"
-                    placeholderTextColor={"#A2A4A5"}
+                    placeholderTextColor={lightMode?"#A2A4A5":'black'}
                     right={
                         <TextInput.Icon
                             icon={"magnify"}
@@ -135,7 +141,7 @@ export const Search = ({ navigation }) => {
                     flexGrow: 1,
                     paddingBottom: 20,
                     height: "auto",
-                    backgroundColor: "#1A1C1E",
+                    backgroundColor: lightMode?"#1A1C1E":'white',
                 }}
             >
                 {!initialSearchStatus ? (
@@ -144,7 +150,7 @@ export const Search = ({ navigation }) => {
                             display: "flex",
                             flexDirection: "column",
                             gap: 10,
-                            backgroundColor: "#26282C",
+                            backgroundColor: lightMode?"#26282C":'white',
                             height: "auto",
                             width: "100%",
                             paddingHorizontal: 20,
@@ -152,7 +158,7 @@ export const Search = ({ navigation }) => {
                             paddingTop: 10,
                         }}
                     >
-                        <Text style={{ color: "#A2A4A5" }}>Suggestions</Text>
+                        <Text style={{ color: lightMode?"#A2A4A5":'black' }}>Suggestions</Text>
                         {moviesSearch2.map((movie, index) => (
                             <BrowseMoviesVertical
                                 key={index}
@@ -169,7 +175,7 @@ export const Search = ({ navigation }) => {
                             display: "flex",
                             flexDirection: "column",
                             gap: 10,
-                            backgroundColor: "#26282C",
+                            backgroundColor: lightMode?"#26282C":'white',
                             height: "auto",
                             width: "100%",
                             paddingHorizontal: 20,

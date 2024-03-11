@@ -85,7 +85,7 @@ export const CreateAccount = ({ navigation }) => {
                 });
                setTimeout(() => {
                 navigation.navigate('Login', {email, password});
-               }, 3000); 
+               }, 2000); 
                 await AsyncStorage.setItem('user-data', JSON.stringify(data))
                 
             } catch (error) {

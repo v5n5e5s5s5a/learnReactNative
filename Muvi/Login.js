@@ -9,12 +9,16 @@ import { CommonActions } from "@react-navigation/native";
 import { firebaseAuth } from "../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import FlashMessage,  { showMessage, hideMessage } from "react-native-flash-message";
+import { useAuth } from "./Authentication";
 
 
 const height = Dimensions.get("screen")
 const width = Dimensions.get("screen")
 
 export const Login = ({ route, navigation }) => {
+
+    const { lightMode, changeToLightMode } = useAuth();
+    
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

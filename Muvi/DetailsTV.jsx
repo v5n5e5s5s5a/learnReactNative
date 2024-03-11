@@ -31,11 +31,15 @@ import {
   BrowseMoviesDetails,
 } from "./Components";
 import YoutubeIframe from "react-native-youtube-iframe";
+import { useAuth } from "./Authentication";
 
 const height = Dimensions.get("screen");
 const width = Dimensions.get("screen");
 
 export const DetailsTV = ({ navigation, route }) => {
+
+  const { data,lightMode, changeToLightMode } = useAuth();
+
   const { movieid } = route.params;
   const { movieName } = route.params;
   const { movieOverview } = route.params;

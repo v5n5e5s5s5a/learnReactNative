@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { IconButton, TextInput } from "react-native-paper";
 import Feather from "react-native-vector-icons/Feather";
 import Fontisto from "react-native-vector-icons/Fontisto"
+import { useAuth } from "./Authentication";
 
 //start of header component
 export const Header = () => {
@@ -89,10 +90,11 @@ export const FilterName = [
     },
 ]
 export function Filter({ name }) {
+    const { data,lightMode, changeToLightMode } = useAuth();
     return (
 
         <View style={{ width: 'auto', borderRadius: 7, height: 'auto', backgroundColor: 'transparent', borderWidth: 1, borderColor: '#B4B6BA', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10, display: 'flex', flexDirection: 'row', }}>
-            <Text style={{ color: '#BFC0C4', fontSize: 14, paddingTop: 4, paddingBottom: 4, }}>{name}</Text>
+            <Text style={{ color: lightMode?'#BFC0C4':'black', fontSize: 14, paddingTop: 4, paddingBottom: 4, }}>{name}</Text>
         </View>
     )
 }
@@ -162,19 +164,20 @@ export const BottomNavigation = ({ iconColorHome, iconColorSearch, iconColorList
 
 //Start of List Component
 export const ListComponent = ({ movieLis, Genre, onPressImage }) => {
+    const { data,lightMode, changeToLightMode } = useAuth();
     return (
         <TouchableOpacity style={{ width: '100%', height: 110, display: 'flex', flexDirection: 'row', gap: -50, backgroundColor: 'transparent',}} onPress={onPressImage}>
             <ImageBackground source={{ uri: `https://image.tmdb.org/t/p/w500/${movieLis.poster_path}` }} style={{ width: '75%', height: '100%', }}/>
             <View style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'transparent', width: '40%', }}>
-                <Text style={{ color: '#F0F1F5', fontSize: 13,}}>{movieLis.title}</Text>
-                <Text style={{ color: '#AAABAF', top: '3%', }}>{movieLis.release_date}</Text>
+                <Text style={{ color: lightMode?'#F0F1F5':'black', fontSize: 13,}}>{movieLis.title}</Text>
+                <Text style={{ color: lightMode?'#AAABAF':'gray', top: '3%', }}>{movieLis.release_date}</Text>
                 
                 <View style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap',}}>
                 {Genre.map((genre,index) =>{
                     
                     if (movieLis.genre_ids.includes(genre.id)){
                         return(
-                            <Text key={index} style={{ color: '#97989C', top: '2%', fontSize: 12, display: 'flex', flexDirection: 'row',}}>{`${genre.name}, `}</Text>
+                            <Text key={index} style={{ color: lightMode?'#97989C':'gray', top: '2%', fontSize: 12, display: 'flex', flexDirection: 'row',}}>{`${genre.name}, `}</Text>
                         )
                     }
                     

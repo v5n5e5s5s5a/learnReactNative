@@ -3,8 +3,12 @@ import { Text, View, ScrollView, ActivityIndicator, Dimensions, SafeAreaView } f
 import React, { useEffect, useState } from "react";
 import { IconButton, TextInput } from "react-native-paper";
 import { BottomNavigation, ListComponent } from "./Components";
+import { useAuth } from "./Authentication";
 
 export const List = ({ navigation }) => {
+
+    const { data,lightMode, changeToLightMode } = useAuth();
+
     const handleImagePress = (id, title, overview) => {
         console.log(id);
         navigation.navigate('Details', {movieid:id, movieTitle: title, movieOverview: overview,});
@@ -57,32 +61,32 @@ export const List = ({ navigation }) => {
 
             {/* start of Header */}
             <View style={{ zIndex: 1, }}>
-                <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', paddingTop: 60, paddingBottom: 1, justifyContent: 'space-between', alignItems: 'Flex-start', display: 'flex', flexDirection: 'column', gap: 15, }}>
-                    <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row', }}>
-                        <View style={{ backgroundColor: '#1F2123', display: 'flex', flexDirection: 'row', paddingLeft: 20, alignItems: 'center', gap: 5, }}>
+                <View style={{ backgroundColor: lightMode?'#1F2123':'white', width: '100%', height: 'auto', paddingTop: 60, paddingBottom: 1, justifyContent: 'space-between', alignItems: 'Flex-start', display: 'flex', flexDirection: 'column', gap: 15, }}>
+                    <View style={{ backgroundColor: lightMode?'#1F2123':'white', width: '100%', height: 'auto', justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row', }}>
+                        <View style={{ backgroundColor: lightMode?'#1F2123':'white', display: 'flex', flexDirection: 'row', paddingLeft: 20, alignItems: 'center', gap: 5, }}>
                             <View style={{ backgroundColor: '#F3B919', paddingHorizontal: 14, borderRadius: 5, alignItems: 'center', }}>
                                 <Text style={{ fontSize: 25, fontWeight: '900', color: '#22221F', }}>M</Text>
                             </View>
-                            <Text style={{ color: '#FFFFFF', fontSize: 25, fontWeight: 'bold', }}>Muvi</Text>
+                            <Text style={{ color: lightMode?'#FFFFFF':'black', fontSize: 25, fontWeight: 'bold', }}>Muvi</Text>
                         </View>
 
                     </View>
 
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 45, paddingLeft: 20, display: 'flex', flexDirection: 'row', }}>
-                        <View style={{ backgroundColor: '#1F2123', gap: 6, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', }}>
+                        <View style={{ backgroundColor: lightMode?'#1F2123':'white', gap: 6, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', }}>
                             <Text style={{ fontSize: 17, color: '#FCCF33', }}>My List</Text>
                             <View style={{ backgroundColor: '#FCCF33', height: 4, width: '75%', borderRadius: 15, }}></View>
                         </View>
-                        <View style={{ backgroundColor: '#1F2123', gap: 6, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', }}>
-                            <Text style={{ fontSize: 17, color: '#E0E2E4', }}>Downloaded</Text>
+                        <View style={{ backgroundColor: lightMode?'#1F2123':'white', gap: 6, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', }}>
+                            <Text style={{ fontSize: 17, color: lightMode?'#E0E2E4':'black', }}>Downloaded</Text>
                             <View style={{ backgroundColor: 'transparent', height: 4, width: '75%', borderRadius: 15, }}></View>
                         </View>
                     </ScrollView >
                 </View>
             </View>
             {/* end of Header */}
-            <ScrollView style={{ backgroundColor: '#26282C', }}>
-                <View style={{ display: 'flex', flexDirection: 'column', gap: 10, backgroundColor: '#26282C', height: 'auto', width: '100%', paddingHorizontal: 20, paddingBottom: 150, paddingTop: 20, }}>
+            <ScrollView style={{ backgroundColor: lightMode?'#26282C':'white', }}>
+                <View style={{ display: 'flex', flexDirection: 'column', gap: 10, backgroundColor: lightMode?'#26282C':'white', height: 'auto', width: '100%', paddingHorizontal: 20, paddingBottom: 150, paddingTop: 20, }}>
                     {moviesList.map((movie, index) => (
                         <ListComponent key={index}
                             movieLis={movie}

@@ -7,8 +7,12 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import { useAuth } from "./Authentication";
 
 export const EditProfile = ({ navigation }) => {
+
+    const { data,lightMode, changeToLightMode } = useAuth();
+
     const height = Dimensions.get("screen")
     const width = Dimensions.get("screen")
     return (

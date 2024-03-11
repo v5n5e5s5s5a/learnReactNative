@@ -11,7 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler'
 import { SearchClothes } from '../learnReactNative/Shopping/SearchClothes';
 import { Splash } from './Muvi/Splash';
-import { MainNavigator, TabNavigator } from './Muvi/Navigation';
+import { MainNavigator, Navigation, TabNavigator } from './Muvi/Navigation';
 import { GetStarted } from './Muvi/GetStarted';
 import { Welcome } from './Muvi/Welcome';
 import { Home } from './Muvi/Home';
@@ -24,14 +24,8 @@ import { Adventure } from './Muvi/Adventure';
 
 export default function App (){
   return (
-    <NavigationContainer>
-      <AuthProvider>
-        <MainNavigator />
-      </AuthProvider>
-    </NavigationContainer>
-
-
-    
+<Navigation/>
+ 
   );
 }
 

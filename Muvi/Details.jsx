@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { View, Text, ImageBackground, Image, Dimensions, Pressable, SafeAreaView, ScrollView, ActivityIndicator } from "react-native";
+import { View, Text, ImageBackground, Image, Dimensions, Pressable, SafeAreaView, ScrollView, ActivityIndicator, Linking } from "react-native";
 import React, { useEffect, useState, useCallback } from "react";
 import { IconButton } from "react-native-paper";
 import AntDesign from "react-native-vector-icons/AntDesign"
@@ -12,12 +12,15 @@ import {
     BrowseMoviesVertical, VerticalMovieBrowseArray, BottomNavigation, Header, BrowseMoviesDetails
 } from "./Components";
 import YoutubeIframe from "react-native-youtube-iframe";
+import { useAuth } from "./Authentication";
 
 
 const height = Dimensions.get("screen")
 const width = Dimensions.get("screen")
 
 export const Details = ({ navigation, route }) => {
+
+    const { data,lightMode, changeToLightMode } = useAuth();
 
     const { movieid, movieTitle, movieOverview } = route.params;
     // const {  } = route.params;
@@ -93,21 +96,21 @@ export const Details = ({ navigation, route }) => {
     return (
 
         <View style={{ flex: 1, }}>
-            <StatusBar style="light" />
-            <SafeAreaView style={{ backgroundColor: '#26282C', flex: 1, paddingTop: 40, }}>
+            <StatusBar style={lightMode ? 'light' : 'dark'} />
+            <SafeAreaView style={{ backgroundColor: lightMode?'#26282C':'white', flex: 1, paddingTop: 40, }}>
 
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 20, paddingBottom: 10, }}>
-                    <AntDesign name="arrowleft" size={25} color={'#E9D160'} onPress={() => navigation.goBack()} />
-                    <Text style={{ color: 'white', fontSize: 17, fontWeight: 700, }}>Details</Text>
+                    <AntDesign name="arrowleft" size={25} color={lightMode?'#E9D160':'orange'} onPress={() => navigation.goBack()} />
+                    <Text style={{ color: lightMode?'white':'black', fontSize: 17, fontWeight: 700, }}>Details</Text>
                 </View>
 
-                <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: '#1A1C1E', }}>
+                <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: lightMode?'#1A1C1E':'white', }}>
 
-                    <View style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#26282C', width: '100%', paddingHorizontal: 20, paddingBottom: 10, }}>
+                    <View style={{ display: 'flex', flexDirection: 'column', backgroundColor: lightMode?'#26282C':'white', width: '100%', paddingHorizontal: 20, paddingBottom: 10, }}>
 
                         <View style={{ height: 20, }}></View>
 
-                        <View style={{ width: '100%', backgroundColor: '#26282C', height: 190,}}>
+                        <View style={{ width: '100%', backgroundColor: lightMode?'#26282C':'white', height: 190,}}>
                             <YoutubeIframe   
                                 height={'100%'}
                                 width={'100%'}
@@ -118,19 +121,19 @@ export const Details = ({ navigation, route }) => {
 
                         <View style={{ height: 15, }}></View>
                         <View style={{ display: 'flex', flexDirection: 'column', gap: 5, width: '85%', backgroundColor: 'transparent', }}>
-                            <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold', }}>{movieTitle}</Text>
-                            <Text style={{ color: '#A8AAAE', fontSize: 13, fontWeight: 200, }}>{movieOverview}</Text>
+                            <Text style={{ color: lightMode?'white':'black', fontSize: 18, fontWeight: 'bold', }}>{movieTitle}</Text>
+                            <Text style={{ color: lightMode?'#A8AAAE':'gray', fontSize: 13, fontWeight: 200, }}>{movieOverview}</Text>
                         </View>
 
                         <View style={{ height: 20, }}></View>
 
                         <View style={{ display: 'flex', flexDirection: 'row', gap: 10, }}>
-                            <Pressable onPress={handlePlaybtn} style={{ display: 'flex', flexDirection: 'row', gap: 3, backgroundColor: '#FDD130', alignItems: 'center', width: '48%', paddingVertical: 10, paddingLeft: 20, borderRadius: 5, }}>
+                            <Pressable onPress={handlePlaybtn} style={{ display: 'flex', flexDirection: 'row', gap: 3, backgroundColor: lightMode?'#FDD130':'orange', alignItems: 'center', width: '48%', paddingVertical: 10, paddingLeft: 20, borderRadius: 5, }}>
                                 <Feather name="play" size={15} color={'#1F2123'} />
                                 <Text style={{ color: '#1F2123', }}>Play</Text>
                             </Pressable>
 
-                            <Pressable style={{ display: 'flex', flexDirection: 'row', gap: 3, backgroundColor: 'transparent', alignItems: 'center', borderColor: '#5F6165', borderWidth: 1, width: '49%', paddingVertical: 10, paddingLeft: 20, borderRadius: 5, }}>
+                            <Pressable style={{ display: 'flex', flexDirection: 'row', gap: 3, backgroundColor: 'transparent', alignItems: 'center', borderColor: lightMode?'#5F6165':'black', borderWidth: 1, width: '49%', paddingVertical: 10, paddingLeft: 20, borderRadius: 5, }}>
                                 <Feather name="plus" size={15} color={'#FDD130'} />
                                 <Text style={{ color: 'white', }}>My List</Text>
                             </Pressable>
@@ -139,12 +142,12 @@ export const Details = ({ navigation, route }) => {
 
                     <View style={{ display: 'flex', flexDirection: 'column', }}>
                         {/*start middle Section */}
-                        <View style={{ backgroundColor: '#26282C', height: 'auto', width: '100%', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 20, gap: 20, paddingBottom: -5 }}>
+                        <View style={{ backgroundColor: lightMode?'#26282C':'white', height: 'auto', width: '100%', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 20, gap: 20, paddingBottom: -5 }}>
 
                             {/* Start of Horizontal Movie Broswe */}
                             <View style={{ display: 'flex', flexDirection: 'column', height: 'auto', backgroundColor: 'transparent', height: 200, width: '100%', gap: 8, }}>
                                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 'auto', width: '100%', justifyContent: 'space-between', paddingRight: 20, }}>
-                                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 500, }}>U.S Details Movies</Text>
+                                    <Text style={{ color: lightMode?'white':'black', fontSize: 18, fontWeight: 500, }}>U.S Details Movies</Text>
                                 </View>
 
 
@@ -161,7 +164,7 @@ export const Details = ({ navigation, route }) => {
 
                             <View style={{ display: 'flex', flexDirection: 'column', height: 'auto', backgroundColor: 'transparent', height: 200, width: '100%', gap: 8, marginTop: -22, }}>
                                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 'auto', width: '100%', justifyContent: 'space-between', paddingRight: 20, }}>
-                                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 500, }}>Muvi Original Details</Text>
+                                    <Text style={{ color: lightMode?'white':'black', fontSize: 18, fontWeight: 500, }}>Muvi Original Details</Text>
                                 </View>
 
                                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ display: 'flex', height: 'auto', flexDirection: 'row', gap: 10, }}>

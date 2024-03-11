@@ -12,12 +12,15 @@ import {
 } from "./Components";
 import { HeaderHome } from "./Header";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { useAuth } from "./Authentication";
 
 
 const height = Dimensions.get("screen")
 const width = Dimensions.get("screen")
 
 export const Home = ({ navigation }) => {
+
+    const { data,lightMode, changeToLightMode } = useAuth();
 
     const handleImagePress = (id, title, overview) => {
         console.log(id);
@@ -103,25 +106,25 @@ export const Home = ({ navigation }) => {
     }, [])
 
 
-    const [genresHome, setGenresHome] = useState([])
-    const fetchHeaderGenres = () => {
-        fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
-            .then(response => response.json())
-            .then(response => {
-                setGenresHome(response.genres)
-            })
-            .catch(err => console.error(err));
-    }
+    // const [genresHome, setGenresHome] = useState([])
+    // const fetchHeaderGenres = () => {
+    //     fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+    //         .then(response => response.json())
+    //         .then(response => {
+    //             setGenresHome(response.genres)
+    //         })
+    //         .catch(err => console.error(err));
+    // }
 
-    useEffect(() => {
-        fetchHeaderGenres()
-        console.log("these are genres", genresHome);
-    }, [])
+    // useEffect(() => {
+    //     fetchHeaderGenres()
+    //     console.log("these are genres", genresHome);
+    // }, [])
 
     return (
 
         <View style={{ flex: 1, }}>
-            <View style={{ zIndex: 1, }}>
+            {/* <View style={{ zIndex: 1, }}>
                 <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', paddingTop: 60, paddingBottom: 1, justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'column', gap: 15, }}>
                     <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row', }}>
                         <View style={{ backgroundColor: '#1F2123', display: 'flex', flexDirection: 'row', paddingLeft: 20, alignItems: 'center', gap: 5, }}>
@@ -138,24 +141,24 @@ export const Home = ({ navigation }) => {
                     </View>
 
 
-                    {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 45, alignItems: 'center', justifyContent: 'center', paddingLeft: 20, display: 'flex', flexDirection: 'row', }}>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 45, alignItems: 'center', justifyContent: 'center', paddingLeft: 20, display: 'flex', flexDirection: 'row', }}>
                         {genresHome.map((genreItem, index) => (
                             <HeaderHome key={index}
                                 genre={genreItem.name}
                             />
                         ))}
-                    </ScrollView > */}
+                    </ScrollView >
                 </View>
-            </View>
-            <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: '#1A1C1E', }}>
-                <SafeAreaView style={{ backgroundColor: '#26282C', flex: 1 }}>
+            </View> */}
+            <ScrollView style={{ flex: 1, flexGrow: 1, paddingBottom: 20, height: 'auto', backgroundColor: lightMode?'#1A1C1E':'white', }}>
+                <SafeAreaView style={{ backgroundColor: lightMode?'#26282C':'white', flex: 1 }}>
 
                     <View style={{ display: 'flex', flexDirection: 'column', }}>
-                        <StatusBar style="light" />
+                    <StatusBar style={lightMode ? 'light' : 'dark'} />
 
 
                         {/*start middle Section */}
-                        <View style={{ backgroundColor: '#26282C', height: 'auto', width: '100%', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 20, gap: 20, paddingBottom: -5 }}>
+                        <View style={{ backgroundColor: lightMode?'#26282C':'white', height: 'auto', width: '100%', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 20, gap: 20, paddingBottom: -5 }}>
 
                             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ display: 'flex', flexDirection: 'row', gap: 5, }}>
                                 {FilterName.map((item, index) => (
@@ -171,8 +174,8 @@ export const Home = ({ navigation }) => {
                             {/* Start of Horizontal Movie Broswe */}
                             <View style={{ display: 'flex', flexDirection: 'column', height: 'auto', backgroundColor: 'transparent', height: 200, width: '100%', gap: 8, }}>
                                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 'auto', width: '100%', justifyContent: 'space-between', paddingRight: 20, }}>
-                                    <Text style={{ color: 'white', fontSize: 22, fontWeight: 500, }}>New Release</Text>
-                                    <Text style={{ color: 'white', fontWeight: 100, fontSize: 13, }}>View More</Text>
+                                    <Text style={{ color: lightMode?'white':'black', fontSize: 22, fontWeight: 500, }}>New Release</Text>
+                                    <Text style={{ color: lightMode?'white':'black', fontWeight: 100, fontSize: 13, }}>View More</Text>
                                 </View>
 
 
@@ -187,8 +190,8 @@ export const Home = ({ navigation }) => {
 
                             <View style={{ display: 'flex', flexDirection: 'column', height: 'auto', backgroundColor: 'transparent', height: 200, width: '100%', gap: 8, marginTop: -22, }}>
                                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 'auto', width: '100%', justifyContent: 'space-between', paddingRight: 20, }}>
-                                    <Text style={{ color: 'white', fontSize: 22, fontWeight: 500, }}>Made for you</Text>
-                                    <Text style={{ color: 'white', fontWeight: 100, fontSize: 13, }}>View More</Text>
+                                    <Text style={{ color: lightMode?'white':'black', fontSize: 22, fontWeight: 500, }}>Made for you</Text>
+                                    <Text style={{ color: lightMode?'white':'black', fontWeight: 100, fontSize: 13, }}>View More</Text>
                                 </View>
 
                                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ display: 'flex', height: 'auto', flexDirection: 'row', gap: 10, }}>
@@ -205,10 +208,10 @@ export const Home = ({ navigation }) => {
 
 
                         {/*start of last Section */}
-                        <View style={{ height: 'auto', backgroundColor: '#1A1C1E', paddingBottom: 50, width: '100%', gap: 10, paddingTop: 10, paddingRight: 20, paddingLeft: 20, }}>
+                        <View style={{ height: 'auto', backgroundColor: lightMode?'#1A1C1E':'white', paddingBottom: 50, width: '100%', gap: 10, paddingTop: 10, paddingRight: 20, paddingLeft: 20, }}>
                             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 'auto', width: '100%', justifyContent: 'space-between', }}>
-                                <Text style={{ color: 'white', fontSize: 22, fontWeight: 500, }}>Popular on <Text style={{ color: '#FED032', }}>Muvi</Text> </Text>
-                                <Text style={{ color: 'white', fontWeight: 100, fontSize: 13, }}>View More</Text>
+                                <Text style={{ color: lightMode?'white':'black', fontSize: 22, fontWeight: 500, }}>Popular on <Text style={{ color: lightMode?'#FED032':'orange', }}>Muvi</Text> </Text>
+                                <Text style={{ color: lightMode?'white':'black', fontWeight: 100, fontSize: 13, }}>View More</Text>
                             </View>
                             {moviesVertical.map((movie, index) => (
                                 <BrowseMoviesVertical key={index}

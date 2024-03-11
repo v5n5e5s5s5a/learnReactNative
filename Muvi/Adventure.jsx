@@ -3,9 +3,13 @@ import { Text, View, ScrollView, ActivityIndicator, Dimensions, SafeAreaView } f
 import React, { useEffect, useState } from "react";
 import { IconButton, TextInput } from "react-native-paper";
 import { BottomNavigation, ListComponent } from "./Components";
-import 'react-native-gesture-handler'
+import 'react-native-gesture-handler';
+import { useAuth } from "./Authentication";
+
 
 export const Adventure = ({ navigation }) => {
+    const { data, lightMode, changeToLightMode } = useAuth();
+
     const handleImagePress = (id, title, overview) => {
         console.log(id);
         navigation.navigate('Details', {movieid:id, movieTitle: title, movieOverview: overview,});
@@ -42,12 +46,12 @@ export const Adventure = ({ navigation }) => {
         fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
             .then(response => response.json())
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 setGenres(response.genres)
 
             })
             .catch(err => console.error(err));
-            console.log(setGenres);
+            // console.log(setGenres);
 
     };
     useEffect(() => {
@@ -57,7 +61,7 @@ export const Adventure = ({ navigation }) => {
         <View>
 
             {/* start of Header */}
-            <View style={{ zIndex: 1, }}>
+            {/* <View style={{ zIndex: 1, }}>
                 <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', paddingTop: 60, paddingBottom: 1, justifyContent: 'space-between', alignItems: 'Flex-start', display: 'flex', flexDirection: 'column', gap: 15, }}>
                     <View style={{ backgroundColor: '#1F2123', width: '100%', height: 'auto', justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row', }}>
                         <View style={{ backgroundColor: '#1F2123', display: 'flex', flexDirection: 'row', paddingLeft: 20, alignItems: 'center', gap: 5, }}>
@@ -80,10 +84,10 @@ export const Adventure = ({ navigation }) => {
                         </View>
                     </ScrollView >
                 </View>
-            </View>
+            </View> */}
             {/* end of Header */}
-            <ScrollView style={{ backgroundColor: '#26282C', }}>
-                <View style={{ display: 'flex', flexDirection: 'column', gap: 10, backgroundColor: '#26282C', height: 'auto', width: '100%', paddingHorizontal: 20, paddingBottom: 150, paddingTop: 20, }}>
+            <ScrollView style={{ backgroundColor: lightMode?'#26282C':'white', }}>
+                <View style={{ display: 'flex', flexDirection: 'column', gap: 10, backgroundColor: lightMode?'#26282C':'white', height: 'auto', width: '100%', paddingHorizontal: 20, paddingBottom: 150, paddingTop: 20, }}>
                     {moviesList.map((movie, index) => (
                         <ListComponent key={index}
                             movieLis={movie}
